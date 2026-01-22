@@ -1,0 +1,567 @@
+body {
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(3, 37, 65);
+  color: white;
+}
+
+.left {
+}
+.right {
+}
+
+.left__nav--icon img {
+  height: 18px; /* TMDB-like size */
+  width: auto; /* keep aspect ratio */
+  display: block; /* remove inline spacing */
+}
+
+.left__nav {
+  display: flex;
+  gap: 25px;
+  list-style: none outside none;
+  justify-content: space-around;
+}
+.left__nav--item {
+}
+.left__nav--icon {
+}
+
+.right__nav {
+  display: flex;
+  gap: 25px;
+  list-style: none outside none;
+  justify-content: space-evenly;
+  padding-right: 20px;
+}
+.right__nav--item {
+}
+.right__nav__item {
+}
+/* 
+<img src="/assets/2/v4/logos/v2/blue_square_2-d537fb2….svg" alt="The Movie Database (TMDB)" width="55" height="40" class="k-image">
+*/
+.new_icon {
+}
+.no_click {
+}
+
+/* Hamburger */
+.hamburger {
+  width: 30px;
+  height: 25px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Filter */
+
+.wrapper {
+  display: flex;
+  margin: 0 10%;
+}
+
+.filtering {
+  width: 25%;
+}
+
+/* Sorting block*/
+.sort {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 0 12px;
+}
+.sort__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sort__main--heading {
+}
+.sort__main--arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.sort__main--arrow img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.sort__main--arrow.active img {
+  transform: rotate(90deg);
+}
+.sort__footer {
+  display: none;
+  padding-bottom: 12px;
+}
+.sort__footer--header {
+}
+.sort__footer--select {
+  position: relative;
+  width: 100%; /* adjust as needed */
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.sort__footer--selected {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px; /* rounded select box */
+  background-color: #fff;
+  position: relative;
+  user-select: none;
+}
+
+.sort__footer--selected::after {
+  content: "▼";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #333;
+}
+
+.sort__footer--options {
+  display: none;
+  position: absolute;
+  width: 100%;
+  margin: 5px 0 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 12px; /* rounded dropdown */
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.sort__footer--options li {
+  padding: 10px 14px;
+  transition: background-color 0.2s;
+}
+
+.sort__footer--options li:hover {
+  background-color: #f0f0f0; /* ✅ hover effect */
+}
+
+/* Filters block */
+
+.filters {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 0 12px;
+}
+
+.filters__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters__main--heading {
+}
+.filters__main--arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.filters__main--arrow img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.filters__main--arrow.active img {
+  transform: rotate(90deg);
+}
+.filters__footer {
+  display: none;
+  padding: 10px;
+}
+.filters__footer--header {
+}
+.filters__footer--select {
+  position: relative;
+  width: 100%; /* adjust as needed */
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.filters__footer--selected {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px; /* rounded select box */
+  background-color: #fff;
+  position: relative;
+  user-select: none;
+}
+
+.filters__footer--selected::after {
+  content: "▼";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #333;
+}
+
+.filters__footer--options {
+  display: none;
+  position: absolute;
+  width: 100%;
+  margin: 5px 0 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 12px; /* rounded dropdown */
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.filters__footer--options li {
+  padding: 10px 14px;
+  transition: background-color 0.2s;
+}
+
+.filters__footer--options li:hover {
+  background-color: #f0f0f0; /* ✅ hover effect */
+}
+
+/* ------------------------------------ */
+.movies {
+  width: 75%;
+}
+
+/* Filters availabalities */
+.availabilities {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem; /* slightly more space */
+}
+
+/* Hide default checkbox */
+.availabilities input[type="checkbox"] {
+  display: none;
+}
+
+/* Custom checkbox labels */
+.availabilities label {
+  position: relative;
+  padding-left: 40px; /* more space for bigger checkbox */
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  line-height: 24px; /* bigger text height */
+  font-size: 16px; /* slightly bigger text */
+  transition: all 0.2s ease;
+  padding: 12px;
+}
+
+/* Bigger custom checkbox box */
+.availabilities label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px; /* bigger width */
+  height: 28px; /* bigger height */
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Checked state */
+.availabilities input[type="checkbox"]:checked + label::before {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+/* Bigger checkmark */
+.availabilities label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 7px;
+  height: 14px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+/* Show checkmark when checked */
+.availabilities input[type="checkbox"]:checked + label::after {
+  opacity: 1;
+}
+
+/* Hover effect */
+.availabilities label:hover::before {
+  border-color: #4f46e5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.availabalities__box {
+  display: none;
+}
+/* ------------------------------------------------ */
+
+.filter-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.checkbox-group {
+  margin-bottom: 20px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.checkbox-item-country-releases {
+  display: none;
+}
+
+.checkbox-item label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.country-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+  display: none;
+}
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.select-wrapper:hover {
+  border-color: #999;
+}
+
+.flag-icon {
+  width: 24px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.select-text {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+.select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #666;
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+.select-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  /* background-color: white; */
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu.open {
+  display: block;
+}
+
+.dropdown-search {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  width: 16px;
+  height: 16px;
+  color: #999;
+}
+
+.dropdown-search input {
+  width: 100%;
+  padding: 8px 12px 8px 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.dropdown-search input:focus {
+  border-color: #00a8e1;
+}
+
+.dropdown-list {
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: white;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item .flag-icon {
+  margin-right: 8px;
+}
+
+.dropdown-item span {
+  font-size: 14px;
+  color: #333;
+}
+.release-types {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.release-types .checkbox-item {
+  margin-bottom: 0;
+}
+
+/* date input */
+
+/* ---------------------- */
+
+/* Mobile */
+@media (max-width: 768px) {
+  .wrapper {
+    display: block;
+    margin: 0;
+  }
+  .filtering {
+    width: 100%;
+  }
+  .left__nav--item {
+    display: none;
+  }
+  .right__nav--item {
+    display: none;
+  }
+
+  .left__nav {
+    display: block;
+  }
+  .left__nav--item-icon {
+    display: flex;
+  }
+  .hamburger {
+    display: flex;
+  }
+  header {
+    justify-content: space-between;
+  }
+}

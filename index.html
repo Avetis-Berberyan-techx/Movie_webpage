@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie webpage</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="left">
+        <ul class="left__nav">
+          <li class="left__nav--item-icon">
+            <a href="" class="left__nav--icon">
+              <img
+                src="./icons/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+                alt="The Movie Database (TMDB)"
+              />
+            </a>
+          </li>
+          <li class="left__nav--item">Movies</li>
+          <li class="left__nav--item">TV Shows</li>
+          <li class="left__nav--item">People</li>
+          <li class="left__nav--item">More</li>
+        </ul>
+      </div>
+      <div class="right">
+        <ul class="right__nav">
+          <li class="right__nav--item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-plus-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+              />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+              />
+            </svg>
+          </li>
+          <li class="right__nav--item">EN</li>
+          <li class="right__nav--item">Login</li>
+          <li class="right__nav--item">Join TMDB</li>
+          <li class="right__nav--item-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+              />
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrapper">
+        <section class="filtering">
+          <h2>Popular Movies</h2>
+          <div class="sort">
+            <div class="sort__main">
+              <h2 class="sort__main--heading">Sort</h2>
+              <button
+                type="button"
+                id="sort-apearance-button"
+                class="sort__main--arrow"
+              >
+                <img src="./icons/arror_right.svg" alt="arrow" />
+              </button>
+            </div>
+            <div class="sort__footer">
+              <p class="sort__footer--header">Sort Results By</p>
+
+              <div class="sort__footer--select">
+                <div class="sort__footer--selected">Popularity Ascending</div>
+                <ul class="sort__footer--options">
+                  <li data-value="pop_asc">Popularity Ascending</li>
+                  <li data-value="pop_desc">Popularity Descending</li>
+                  <li data-value="rat_asc">Rating Ascending</li>
+                  <li data-value="rat_desc">Rating Descending</li>
+                  <li data-value="reld_asc">Release Date Ascending</li>
+                  <li data-value="reld_desc">Release Date Descending</li>
+                  <li data-value="A-Z">A-Z</li>
+                  <li data-value="Z-A">Z-A</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- filters -->
+          <div class="filters">
+            <div class="filters__main">
+              <h2 class="filters__main--heading">Filters</h2>
+              <button
+                type="button"
+                id="filters-apearance-button"
+                class="filters__main--arrow"
+              >
+                <img src="./icons/arror_right.svg" alt="arrow" />
+              </button>
+            </div>
+            <div class="filters__footer">
+              <h3>Availabalities</h3>
+              <div class="availabalities">
+                <input
+                  type="checkbox"
+                  id="search_all"
+                  name="search_all"
+                  value="search_all"
+                  class="box"
+                  checked
+                />
+                <label for="search_all">Search all availabalities?</label><br />
+                <div class="availabalities__box">
+                  <input
+                    type="checkbox"
+                    id="stream"
+                    name="stream"
+                    value="stream"
+                    class="box"
+                    checked
+                  />
+                  <label for="stream">Stream</label><br />
+                  <input
+                    type="checkbox"
+                    id="free"
+                    name="free"
+                    value="free"
+                    class="box"
+                    checked
+                  />
+                  <label for="free">Free</label><br />
+                  <input
+                    type="checkbox"
+                    id="ads"
+                    name="ads"
+                    value="ads"
+                    class="box"
+                    checked
+                  />
+                  <label for="ads">Ads</label><br />
+                  <input
+                    type="checkbox"
+                    id="rent"
+                    name="rent"
+                    value="rent"
+                    class="box"
+                    checked
+                  />
+                  <label for="rent">Rent</label><br />
+                  <input
+                    type="checkbox"
+                    id="buy"
+                    name="buy"
+                    value="buy"
+                    class="box"
+                    checked
+                  />
+                  <label for="buy">Buy</label><br />
+                </div>
+              </div>
+
+              <h3>Release Dates</h3>
+
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="searchAllReleases" checked />
+                  <label for="searchAllReleases">Search all releases?</label>
+                </div>
+                <div class="checkbox-item checkbox-item-country-releases">
+                  <input type="checkbox" id="searchAllCountries" checked />
+                  <label for="searchAllCountries">Search all countries?</label>
+                </div>
+              </div>
+
+              <div class="country-select">
+                <div class="select-wrapper">
+                  <svg
+                    class="flag-icon"
+                    viewBox="0 0 60 30"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="60" height="30" fill="#B22234" />
+                    <path
+                      d="M0,3.46h60M0,6.92h60M0,10.38h60M0,13.84h60M0,17.3h60M0,20.76h60M0,24.23h60M0,27.69h60"
+                      stroke="#fff"
+                      stroke-width="2.31"
+                    />
+                    <rect width="24" height="16.15" fill="#3C3B6E" />
+                  </svg>
+                  <span class="select-text">United States</span>
+                  <div class="select-arrow"></div>
+                </div>
+                <div class="dropdown-menu">
+                  <div class="dropdown-search">
+                    <div class="search-wrapper">
+                      <svg
+                        class="search-icon"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        ></path>
+                      </svg>
+                      <input
+                        type="text"
+                        id="countrySearch"
+                        placeholder="Filter"
+                      />
+                    </div>
+                  </div>
+                  <div class="dropdown-list">
+                    <div class="dropdown-item" data-country="Afghanistan">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="20" height="30" fill="#000" />
+                        <rect x="20" width="20" height="30" fill="#D32011" />
+                        <rect x="40" width="20" height="30" fill="#009E49" />
+                      </svg>
+                      <span>Afghanistan</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Albania">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#E41E20" />
+                      </svg>
+                      <span>Albania</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Algeria">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="30" height="30" fill="#006233" />
+                        <rect x="30" width="30" height="30" fill="#FFF" />
+                      </svg>
+                      <span>Algeria</span>
+                    </div>
+                    <div class="dropdown-item" data-country="American Samoa">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#002868" />
+                        <path d="M0,30 L60,15 L0,0 Z" fill="#BF0A30" />
+                      </svg>
+                      <span>American Samoa</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Andorra">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="20" height="30" fill="#0018A8" />
+                        <rect x="20" width="20" height="30" fill="#FEDF00" />
+                        <rect x="40" width="20" height="30" fill="#D70007" />
+                      </svg>
+                      <span>Andorra</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Angola">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="15" fill="#CC092F" />
+                        <rect y="15" width="60" height="15" fill="#000" />
+                      </svg>
+                      <span>Angola</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Anguilla">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#012169" />
+                      </svg>
+                      <span>Anguilla</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Argentina">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="10" fill="#74ACDF" />
+                        <rect y="10" width="60" height="10" fill="#FFF" />
+                        <rect y="20" width="60" height="10" fill="#74ACDF" />
+                      </svg>
+                      <span>Argentina</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Australia">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#012169" />
+                      </svg>
+                      <span>Australia</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Austria">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="10" fill="#ED2939" />
+                        <rect y="10" width="60" height="10" fill="#FFF" />
+                        <rect y="20" width="60" height="10" fill="#ED2939" />
+                      </svg>
+                      <span>Austria</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Brazil">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#009B3A" />
+                        <path d="M30,5 L55,15 L30,25 L5,15 Z" fill="#FEDF00" />
+                      </svg>
+                      <span>Brazil</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Canada">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#FFF" />
+                        <rect width="15" height="30" fill="#FF0000" />
+                        <rect x="45" width="15" height="30" fill="#FF0000" />
+                      </svg>
+                      <span>Canada</span>
+                    </div>
+                    <div class="dropdown-item" data-country="China">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#DE2910" />
+                      </svg>
+                      <span>China</span>
+                    </div>
+                    <div class="dropdown-item" data-country="France">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="20" height="30" fill="#002395" />
+                        <rect x="20" width="20" height="30" fill="#FFF" />
+                        <rect x="40" width="20" height="30" fill="#ED2939" />
+                      </svg>
+                      <span>France</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Germany">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="10" fill="#000" />
+                        <rect y="10" width="60" height="10" fill="#D00" />
+                        <rect y="20" width="60" height="10" fill="#FFCE00" />
+                      </svg>
+                      <span>Germany</span>
+                    </div>
+                    <div class="dropdown-item" data-country="India">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="10" fill="#FF9933" />
+                        <rect y="10" width="60" height="10" fill="#FFF" />
+                        <rect y="20" width="60" height="10" fill="#138808" />
+                      </svg>
+                      <span>India</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Italy">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="20" height="30" fill="#009246" />
+                        <rect x="20" width="20" height="30" fill="#FFF" />
+                        <rect x="40" width="20" height="30" fill="#CE2B37" />
+                      </svg>
+                      <span>Italy</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Japan">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#FFF" />
+                        <circle cx="30" cy="15" r="9" fill="#BC002D" />
+                      </svg>
+                      <span>Japan</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Mexico">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="20" height="30" fill="#006847" />
+                        <rect x="20" width="20" height="30" fill="#FFF" />
+                        <rect x="40" width="20" height="30" fill="#CE1126" />
+                      </svg>
+                      <span>Mexico</span>
+                    </div>
+                    <div class="dropdown-item" data-country="Spain">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="7.5" fill="#AA151B" />
+                        <rect y="7.5" width="60" height="15" fill="#F1BF00" />
+                        <rect y="22.5" width="60" height="7.5" fill="#AA151B" />
+                      </svg>
+                      <span>Spain</span>
+                    </div>
+                    <div class="dropdown-item" data-country="United Kingdom">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#012169" />
+                        <path
+                          d="M0,0 L60,30 M60,0 L0,30"
+                          stroke="#FFF"
+                          stroke-width="6"
+                        />
+                        <path
+                          d="M0,0 L60,30 M60,0 L0,30"
+                          stroke="#C8102E"
+                          stroke-width="4"
+                        />
+                        <path
+                          d="M30,0 v30 M0,15 h60"
+                          stroke="#FFF"
+                          stroke-width="10"
+                        />
+                        <path
+                          d="M30,0 v30 M0,15 h60"
+                          stroke="#C8102E"
+                          stroke-width="6"
+                        />
+                      </svg>
+                      <span>United Kingdom</span>
+                    </div>
+                    <div class="dropdown-item" data-country="United States">
+                      <svg class="flag-icon" viewBox="0 0 60 30">
+                        <rect width="60" height="30" fill="#B22234" />
+                        <path
+                          d="M0,3.46h60M0,6.92h60M0,10.38h60M0,13.84h60M0,17.3h60M0,20.76h60M0,24.23h60M0,27.69h60"
+                          stroke="#fff"
+                          stroke-width="2.31"
+                        />
+                        <rect width="24" height="16.15" fill="#3C3B6E" />
+                      </svg>
+                      <span>United States</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="release-types">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="theatrical" checked />
+                  <label for="theatrical">Theatrical (limited)</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="theatricalWide" checked />
+                  <label for="theatricalWide">Theatrical</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="premiere" checked />
+                  <label for="premiere">Premiere</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="digital" checked />
+                  <label for="digital">Digital</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="physical" checked />
+                  <label for="physical">Physical</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="tv" checked />
+                  <label for="tv">TV</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="movies">
+          <h1>Here should be cards</h1>
+        </section>
+      </div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
