@@ -174,3 +174,139 @@ document.addEventListener("click", function () {
 
 // date input
 
+const fromInput = document.getElementById("from");
+const toInput = document.getElementById("to");
+
+const fromBtn = document.getElementById("fromBtn");
+const toBtn = document.getElementById("toBtn");
+
+const toPicker = new AirDatepicker(toInput, {
+  dateFormat: "yyyy-MM-dd",
+});
+
+const fromPicker = new AirDatepicker(fromInput, {
+  dateFormat: "yyyy-MM-dd",
+  onSelect({ date }) {
+    toPicker.update({
+      minDate: date,
+    });
+  },
+});
+
+// 🔥 Open picker when clicking icon
+fromBtn.addEventListener("click", () => {
+  fromPicker.show();
+});
+
+toBtn.addEventListener("click", () => {
+  toPicker.show();
+});
+
+//Genres
+
+const pills = document.querySelectorAll(".genre-pill");
+
+pills.forEach((pill) => {
+  pill.addEventListener("click", () => {
+    pill.classList.toggle("is-active");
+  });
+});
+
+// Example: get selected genres
+function getSelectedGenres() {
+  return [...document.querySelectorAll(".genre-pill.is-active")].map(
+    (pill) => pill.textContent,
+  );
+}
+
+// Language
+
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.querySelector(".lang-picker__button");
+  const panel = document.querySelector(".lang-picker__panel");
+  const search = document.querySelector(".lang-picker__search");
+  const selectedSpan = document.querySelector(".lang-picker__selected");
+  const items = document.querySelectorAll(".lang-picker__item");
+
+  function openPicker() {
+    button.setAttribute("aria-expanded", "true");
+    panel.hidden = false;
+    search.focus();
+    search.value = "";
+    filterItems();
+  }
+
+  function closePicker() {
+    button.setAttribute("aria-expanded", "false");
+    panel.hidden = true;
+    search.value = "";
+    filterItems();
+    button.focus();
+  }
+
+  function togglePicker() {
+    if (panel.hidden) {
+      openPicker();
+    } else {
+      closePicker();
+    }
+  }
+
+  function filterItems() {
+    const term = search.value.trim().toLowerCase();
+    items.forEach((item) => {
+      const text = item.textContent.trim().toLowerCase();
+      item.hidden = term !== "" && !text.includes(term);
+    });
+  }
+
+  // Toggle on click
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+    togglePicker();
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!button.contains(e.target) && !panel.contains(e.target)) {
+      closePicker();
+    }
+  });
+
+  // Select item
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      items.forEach((i) => {
+        i.classList.remove("lang-picker__item--selected");
+        i.setAttribute("aria-selected", "false");
+      });
+
+      item.classList.add("lang-picker__item--selected");
+      item.setAttribute("aria-selected", "true");
+      selectedSpan.textContent = item.textContent.trim();
+
+      closePicker();
+    });
+  });
+
+  // Live filtering
+  search.addEventListener("input", filterItems);
+
+  // Keyboard: Escape → close
+  search.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closePicker();
+    }
+  });
+
+  button.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      togglePicker();
+    }
+    if (e.key === "Escape") {
+      closePicker();
+    }
+  });
+});

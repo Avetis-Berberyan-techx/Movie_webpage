@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie webpage</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.css"
+    />
   </head>
   <body>
     <header>
@@ -446,14 +450,290 @@
                   <label for="tv">TV</label>
                 </div>
               </div>
+              <div class="date-filter">
+                <div class="date-filter__from">
+                  <label for="from">From:</label>
+
+                  <div class="date-filter__field">
+                    <input
+                      type="text"
+                      id="from"
+                      name="from"
+                      autocomplete="off"
+                    />
+
+                    <button type="button" class="date-filter__btn" id="fromBtn">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-calendar3-event"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"
+                        />
+                        <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="date-filter__to">
+                  <label for="to">To:</label>
+
+                  <div class="date-filter__field">
+                    <input type="text" id="to" name="to" autocomplete="off" />
+
+                    <button type="button" class="date-filter__btn" id="toBtn">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-calendar3-event"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"
+                        />
+                        <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="genres">
+                <div class="genres__title">Genres</div>
+
+                <div class="genres__list">
+                  <button class="genre-pill">Action</button>
+                  <button class="genre-pill">Adventure</button>
+                  <button class="genre-pill">Animation</button>
+                  <button class="genre-pill">Comedy</button>
+                  <button class="genre-pill">Crime</button>
+                  <button class="genre-pill">Documentary</button>
+                  <button class="genre-pill">Drama</button>
+                  <button class="genre-pill">Family</button>
+                  <button class="genre-pill">Fantasy</button>
+                  <button class="genre-pill">History</button>
+                  <button class="genre-pill">Horror</button>
+                  <button class="genre-pill">Music</button>
+                  <button class="genre-pill">Mystery</button>
+                  <button class="genre-pill">Romance</button>
+                  <button class="genre-pill">Science Fiction</button>
+                  <button class="genre-pill">TV Movie</button>
+                  <button class="genre-pill">Thriller</button>
+                  <button class="genre-pill">War</button>
+                  <button class="genre-pill">Western</button>
+                </div>
+              </div>
+              <div class="lang-picker">
+                <label class="lang-picker__label" for="lang-picker"
+                  >Language</label
+                >
+
+                <div class="lang-picker__container">
+                  <button
+                    type="button"
+                    class="lang-picker__button"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                  >
+                    <span class="lang-picker__selected">None selected</span>
+                    <span class="lang-picker__arrow"></span>
+                  </button>
+
+                  <div class="lang-picker__panel" hidden>
+                    <div class="lang-picker__search-wrapper">
+                      <input
+                        type="search"
+                        class="lang-picker__search"
+                        placeholder="Type to filter..."
+                        autocomplete="off"
+                        id="lang-picker"
+                      />
+                    </div>
+
+                    <ul class="lang-picker__list" role="listbox">
+                      <li
+                        class="lang-picker__item lang-picker__item--selected"
+                        role="option"
+                        aria-selected="true"
+                        data-value=""
+                      >
+                        None selected
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="en"
+                      >
+                        English
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="fr"
+                      >
+                        French
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="es"
+                      >
+                        Spanish
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="de"
+                      >
+                        German
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="it"
+                      >
+                        Italian
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="pt"
+                      >
+                        Portuguese
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="ru"
+                      >
+                        Russian
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="zh"
+                      >
+                        Chinese (Simplified)
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="ja"
+                      >
+                        Japanese
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="ko"
+                      >
+                        Korean
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="ar"
+                      >
+                        Arabic
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="tr"
+                      >
+                        Turkish
+                      </li>
+                      <li
+                        class="lang-picker__item"
+                        role="option"
+                        data-value="pl"
+                      >
+                        Polish
+                      </li>
+                      <!-- Add more languages here as needed -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              User Score
+              <div class="filter-block">
+                <p class="filter-label">User Score</p>
+                <div class="slider-container">
+                  <input
+                    type="range"
+                    class="slider user-score-slider"
+                    min="0"
+                    max="10"
+                    step="0.5"
+                    value="5"
+                  />
+                  <div class="slider-values">
+                    <span>0</span>
+                    <span>10</span>
+                  </div>
+                </div>
+              </div>
+
+              Minimum User Votes
+              <div class="filter-block">
+                <p class="filter-label">Minimum User Votes</p>
+                <div class="slider-container">
+                  <input
+                    type="range"
+                    class="slider min-votes-slider"
+                    min="0"
+                    max="500"
+                    step="10"
+                    value="0"
+                  />
+                  <div class="slider-values">
+                    <span>0</span>
+                    <span>500</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Runtime -->
+              <div class="filter-block">
+                <p class="filter-label">Runtime</p>
+                <div class="slider-container">
+                  <input
+                    type="range"
+                    class="slider runtime-slider"
+                    min="0"
+                    max="360"
+                    step="15"
+                    value="120"
+                  />
+                  <div class="slider-values">
+                    <span>0 min</span>
+                    <span>360 min</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword">
+                <label for="keyword-search" class="keyword__title"
+                  >Keyword</label
+                >
+                <input type="text" id="keyword-search" />
+              </div>
             </div>
           </div>
         </section>
+
         <section class="movies">
           <h1>Here should be cards</h1>
         </section>
       </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.js"></script>
+
     <script src="index.js"></script>
   </body>
 </html>

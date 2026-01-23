@@ -213,7 +213,7 @@ header {
 }
 .filters__footer {
   display: none;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 .filters__footer--header {
 }
@@ -402,6 +402,13 @@ h3 {
   display: none;
 }
 
+.language-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+  display: block;
+}
+
 .select-wrapper {
   position: relative;
   display: flex;
@@ -533,8 +540,325 @@ h3 {
 }
 
 /* date input */
+.date-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.date-filter__field {
+  display: flex;
+  width: 100%;
+}
+
+.date-filter input {
+  padding: 8px 20% 8px 10px;
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  align-self: flex-end;
+}
+
+.date-filter__from input {
+  margin-left: 17%;
+}
+
+.date-filter__to input {
+  margin-left: 24%;
+}
+
+.date-filter__from {
+  display: flex;
+  align-items: center;
+}
+.date-filter__to {
+  display: flex;
+  align-items: center;
+}
+
+.date-filter__btn {
+  background: none;
+  border: none;
+  border-top-right-radius: 13%;
+  border-bottom-right-radius: 13%;
+  cursor: pointer;
+  color: white;
+  background-color: grey;
+  position: relative;
+  right: 3%;
+}
+
+.date-filter__btn:hover {
+  color: #000;
+}
 
 /* ---------------------- */
+
+/* Genres */
+
+.genres {
+  font-family: system-ui, sans-serif;
+}
+
+.genres__title {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.genres__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.genre-pill {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #aaa;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.genre-pill:hover {
+  border-color: #000;
+}
+
+.genre-pill.is-active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+/* Language */
+.lang-picker {
+  font-family: system-ui, sans-serif;
+  max-width: 360px;
+  margin: 2rem auto;
+}
+
+.lang-picker__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.lang-picker__container {
+  position: relative;
+}
+
+.lang-picker__button {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 1rem;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.lang-picker__button:hover {
+  border-color: #9ca3af;
+}
+
+.lang-picker__button[aria-expanded="true"],
+.lang-picker__button:focus-visible {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.lang-picker__selected {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lang-picker__arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #6b7280;
+  transition: transform 0.2s;
+}
+
+.lang-picker__button[aria-expanded="true"] .lang-picker__arrow {
+  transform: rotate(180deg);
+}
+
+.lang-picker__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.375rem;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 5px 10px -5px rgba(0, 0, 0, 0.04);
+  max-height: 320px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.lang-picker__search-wrapper {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.lang-picker__search {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.lang-picker__search:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.lang-picker__list {
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.lang-picker__item {
+  padding: 0.625rem 1rem;
+  font-size: 0.95rem;
+  color: #111827;
+  cursor: pointer;
+}
+
+.lang-picker__item:hover,
+.lang-picker__item:focus {
+  background: #eff6ff;
+  outline: none;
+}
+
+.lang-picker__item--selected {
+  background: #dbeafe;
+  font-weight: 500;
+}
+
+.lang-picker__item[hidden] {
+  display: none;
+}
+
+/* Scrollbar */
+.lang-picker__list::-webkit-scrollbar {
+  width: 6px;
+}
+.lang-picker__list::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 3px;
+}
+.lang-picker__list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+/* score scale minutes */
+
+.filter-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem; /* space between blocks */
+}
+
+.filter-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.slider-container {
+  position: relative;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  margin: 8px 0 4px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid currentColor;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.15s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* User Score - blue */
+.user-score-slider {
+  accent-color: #3b82f6;
+}
+.user-score-slider::-webkit-slider-thumb {
+  border-color: #3b82f6;
+}
+
+/* Min Votes - gray */
+.min-votes-slider {
+  accent-color: #6b7280;
+}
+.min-votes-slider::-webkit-slider-thumb {
+  border-color: #6b7280;
+}
+
+/* Runtime - teal */
+.runtime-slider {
+  accent-color: #0ea5e9;
+}
+.runtime-slider::-webkit-slider-thumb {
+  border-color: #0ea5e9;
+}
+
+.slider-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Keywords */
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -563,5 +887,22 @@ h3 {
   }
   header {
     justify-content: space-between;
+  }
+  /* 
+  .date-filter input {
+    padding: 8px 20% 8px 10px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    align-self: flex-end;
+  } */
+
+  .date-filter__from input {
+    margin-left: 17%;
+    width: 75%;
+  }
+
+  .date-filter__to input {
+    margin-left: 21.5%;
   }
 }
