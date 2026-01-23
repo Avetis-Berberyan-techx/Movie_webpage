@@ -221,92 +221,108 @@ function getSelectedGenres() {
 
 // Language
 
-document.addEventListener("DOMContentLoaded", () => {
-  const button = document.querySelector(".lang-picker__button");
-  const panel = document.querySelector(".lang-picker__panel");
-  const search = document.querySelector(".lang-picker__search");
-  const selectedSpan = document.querySelector(".lang-picker__selected");
-  const items = document.querySelectorAll(".lang-picker__item");
+//keyword
 
-  function openPicker() {
-    button.setAttribute("aria-expanded", "true");
-    panel.hidden = false;
-    search.focus();
-    search.value = "";
-    filterItems();
-  }
+const availableKeywords = [
+  "restaurant",
+  "cafe",
+  "bar",
+  "hotel",
+  "museum",
+  "park",
+  "beach",
+  "shopping",
+  "gym",
+  "spa",
+  "vegan",
+  "pet-friendly",
+  "luxury",
+  "budget",
+];
 
-  function closePicker() {
-    button.setAttribute("aria-expanded", "false");
-    panel.hidden = true;
-    search.value = "";
-    filterItems();
-    button.focus();
-  }
+const wrapper = document.getElementById("keywordWrapper");
+const input = document.getElementById("keywordInput");
+const dropdown = document.getElementById("keywordDropdown");
 
-  function togglePicker() {
-    if (panel.hidden) {
-      openPicker();
-    } else {
-      closePicker();
-    }
-  }
+const selectedKeywords = new Set();
 
-  function filterItems() {
-    const term = search.value.trim().toLowerCase();
-    items.forEach((item) => {
-      const text = item.textContent.trim().toLowerCase();
-      item.hidden = term !== "" && !text.includes(term);
-    });
-  }
+// Focus input when clicking anywhere inside wrapper
+wrapper.addEventListener("click", () => {
+  input.focus();
+});
 
-  // Toggle on click
-  button.addEventListener("click", (e) => {
-    e.stopPropagation();
-    togglePicker();
+function renderPills() {
+  wrapper.querySelectorAll(".keyword-pill").forEach((p) => p.remove());
+
+  selectedKeywords.forEach((kw) => {
+    const pill = document.createElement("div");
+    pill.className = "keyword-pill";
+    pill.innerHTML = `
+      ${kw}
+      <button class="remove-btn" data-keyword="${kw}">×</button>
+    `;
+    wrapper.insertBefore(pill, input);
   });
+}
 
-  // Close when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!button.contains(e.target) && !panel.contains(e.target)) {
-      closePicker();
-    }
-  });
+function showDropdown(value) {
+  dropdown.innerHTML = "";
 
-  // Select item
-  items.forEach((item) => {
+  if (!value) {
+    dropdown.style.display = "none";
+    return;
+  }
+
+  const filtered = availableKeywords.filter(
+    (k) => k.includes(value.toLowerCase()) && !selectedKeywords.has(k),
+  );
+
+  filtered.forEach((kw) => {
+    const item = document.createElement("div");
+    item.className = "keyword-item";
+    item.textContent = kw;
+
     item.addEventListener("click", () => {
-      items.forEach((i) => {
-        i.classList.remove("lang-picker__item--selected");
-        i.setAttribute("aria-selected", "false");
-      });
-
-      item.classList.add("lang-picker__item--selected");
-      item.setAttribute("aria-selected", "true");
-      selectedSpan.textContent = item.textContent.trim();
-
-      closePicker();
+      selectedKeywords.add(kw);
+      renderPills();
+      input.value = "";
+      dropdown.style.display = "none";
+      input.focus();
     });
+
+    dropdown.appendChild(item);
   });
 
-  // Live filtering
-  search.addEventListener("input", filterItems);
+  dropdown.style.display = filtered.length ? "block" : "none";
+}
 
-  // Keyboard: Escape → close
-  search.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      e.preventDefault();
-      closePicker();
-    }
-  });
+input.addEventListener("input", () => {
+  showDropdown(input.value.trim());
+});
 
-  button.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      togglePicker();
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const val = input.value.trim();
+    if (val && !selectedKeywords.has(val)) {
+      selectedKeywords.add(val);
+      renderPills();
     }
-    if (e.key === "Escape") {
-      closePicker();
-    }
-  });
+    input.value = "";
+    dropdown.style.display = "none";
+  }
+});
+
+wrapper.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-btn")) {
+    selectedKeywords.delete(e.target.dataset.keyword);
+    renderPills();
+    input.focus();
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (!wrapper.contains(e.target) && !dropdown.contains(e.target)) {
+    dropdown.style.display = "none";
+  }
 });

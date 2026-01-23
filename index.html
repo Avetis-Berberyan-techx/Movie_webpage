@@ -656,12 +656,10 @@
                       >
                         Polish
                       </li>
-                      <!-- Add more languages here as needed -->
                     </ul>
                   </div>
                 </div>
               </div>
-              User Score
               <div class="filter-block">
                 <p class="filter-label">User Score</p>
                 <div class="slider-container">
@@ -680,7 +678,6 @@
                 </div>
               </div>
 
-              Minimum User Votes
               <div class="filter-block">
                 <p class="filter-label">Minimum User Votes</p>
                 <div class="slider-container">
@@ -717,13 +714,24 @@
                   </div>
                 </div>
               </div>
-              <div class="keyword">
-                <label for="keyword-search" class="keyword__title"
-                  >Keyword</label
-                >
-                <input type="text" id="keyword-search" />
+              <div class="keyword-container">
+                <label class="label">Keywords</label>
+
+                <div class="keyword-input-wrapper" id="keywordWrapper">
+                  <input
+                    type="text"
+                    class="keyword-input"
+                    id="keywordInput"
+                    placeholder="Filter by keywords..."
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div class="keyword-dropdown" id="keywordDropdown"></div>
               </div>
             </div>
+
+            <script src="script.js"></script>
           </div>
         </section>
 

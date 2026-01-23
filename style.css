@@ -860,6 +860,105 @@ h3 {
 
 /* Keywords */
 
+.keyword-container {
+  width: 100%;
+  max-width: 580px;
+  margin: 2rem auto;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  position: relative;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.keyword-input-wrapper {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  background: white;
+  min-height: 42px;
+  cursor: text;
+}
+
+.keyword-input-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.keyword-pill {
+  background: #e5e7eb;
+  color: #1f2937;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: #6b7280;
+}
+
+.remove-btn:hover {
+  color: #ef4444;
+}
+
+.keyword-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 120px;
+  font-size: 15px;
+  padding: 4px 0;
+}
+
+.keyword-input::placeholder {
+  color: #9ca3af;
+}
+
+.keyword-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 6px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10;
+}
+
+.keyword-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.keyword-item:hover {
+  background: #eff6ff;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .wrapper {
