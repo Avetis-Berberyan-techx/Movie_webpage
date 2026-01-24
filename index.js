@@ -90,6 +90,7 @@ const checkboxReleaseTypesWrapper = document.querySelector(".release-types");
 
 //releases checkboxes
 const searchAllReleases = document.getElementById("searchAllReleases");
+const searchAllCountries = document.getElementById("searchAllCountries");
 
 searchAllReleases.addEventListener("change", () => {
   if (searchAllReleases.checked) {
@@ -102,8 +103,55 @@ searchAllReleases.addEventListener("change", () => {
 });
 
 //country releases
-const searchAllCountries = document.getElementById("searchAllCountries");
-// TODO
+const pickerCountry = document.querySelector(".picker--country");
+
+searchAllCountries.addEventListener("change", () => {
+  if (!searchAllCountries.checked) {
+    pickerCountry.style.display = "block";
+  } else {
+    pickerCountry.style.display = "none";
+  }
+});
+
+document.querySelectorAll(".picker").forEach((picker) => {
+  const button = picker.querySelector(".picker__button");
+  const search = picker.querySelector(".picker__search");
+  const items = picker.querySelectorAll(".picker__item");
+  const value = picker.querySelector(".picker__value");
+
+  button.addEventListener("click", () => {
+    picker.classList.toggle("open");
+    search.value = "";
+    filter("");
+    search.focus();
+  });
+
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      value.textContent = item.textContent;
+      picker.classList.remove("open");
+    });
+  });
+
+  search.addEventListener("input", (e) => {
+    filter(e.target.value.toLowerCase());
+  });
+
+  function filter(q) {
+    items.forEach((item) => {
+      item.style.display = item.textContent.toLowerCase().includes(q)
+        ? "block"
+        : "none";
+    });
+  }
+});
+
+document.addEventListener("click", (e) => {
+  document.querySelectorAll(".picker").forEach((picker) => {
+    if (!picker.contains(e.target)) picker.classList.remove("open");
+  });
+});
+
 //----------------------------
 
 // date input
@@ -260,3 +308,68 @@ document.addEventListener("click", (e) => {
     dropdown.style.display = "none";
   }
 });
+
+// range fill in
+const userScoreMin = document.getElementById("userScoreMin");
+const userScoreMax = document.getElementById("userScoreMax");
+const userScoreRange = document.getElementById("userScoreRange");
+
+function updateUserScore() {
+  let min = parseFloat(userScoreMin.value);
+  let max = parseFloat(userScoreMax.value);
+
+  if (min > max) {
+    [min, max] = [max, min];
+    userScoreMin.value = min;
+    userScoreMax.value = max;
+  }
+
+  const percent1 = (min / 10) * 100;
+  const percent2 = (max / 10) * 100;
+
+  userScoreRange.style.left = percent1 + "%";
+  userScoreRange.style.width = percent2 - percent1 + "%";
+}
+
+userScoreMin.addEventListener("input", updateUserScore);
+userScoreMax.addEventListener("input", updateUserScore);
+updateUserScore();
+
+// Minimum User Votes (single range)
+const votes = document.getElementById("votes");
+const votesRange = document.getElementById("votesRange");
+
+function updateVotes() {
+  const percent = (votes.value / 500) * 100;
+  votesRange.style.left = "0%";
+  votesRange.style.width = percent + "%";
+}
+
+votes.addEventListener("input", updateVotes);
+updateVotes();
+
+// Runtime (dual range)
+const runtimeMin = document.getElementById("runtimeMin");
+const runtimeMax = document.getElementById("runtimeMax");
+const runtimeRange = document.getElementById("runtimeRange");
+
+function updateRuntime() {
+  let min = parseInt(runtimeMin.value);
+  let max = parseInt(runtimeMax.value);
+
+  if (min > max) {
+    [min, max] = [max, min];
+    runtimeMin.value = min;
+    runtimeMax.value = max;
+  }
+
+  const percent1 = (min / 360) * 100;
+  const percent2 = (max / 360) * 100;
+
+  runtimeRange.style.left = percent1 + "%";
+  runtimeRange.style.width = percent2 - percent1 + "%";
+}
+
+runtimeMin.addEventListener("input", updateRuntime);
+runtimeMax.addEventListener("input", updateRuntime);
+updateRuntime();

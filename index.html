@@ -192,7 +192,27 @@
                   <label for="searchAllCountries">Search all countries?</label>
                 </div>
               </div>
+              <!-- country picker -->
+              <div class="picker picker--country">
+                <button class="picker__button" type="button">
+                  <span class="picker__value">Select country</span>
+                  <svg class="picker__chevron" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
 
+                <div class="picker__panel">
+                  <input class="picker__search" placeholder="Search country…" />
+                  <ul class="picker__list">
+                    <li class="picker__item">🇦🇲 Armenia</li>
+                    <li class="picker__item">🇩🇪 Germany</li>
+                    <li class="picker__item">🇫🇷 France</li>
+                    <li class="picker__item">🇺🇸 United States</li>
+                    <li class="picker__item">🇯🇵 Japan</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- ----------------------------------------------- -->
               <div class="release-types">
                 <div class="checkbox-item">
                   <input type="checkbox" id="theatrical" checked />
@@ -299,58 +319,172 @@
                 </div>
               </div>
               <!-- Language -->
+              <div class="picker picker--language">
+                <button class="picker__button" type="button">
+                  <span class="picker__value">Select language</span>
+                  <svg class="picker__chevron" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
 
-              <div class="filter-block">
-                <p class="filter-label">User Score</p>
-                <div class="slider-container">
+                <div class="picker__panel">
                   <input
-                    type="range"
-                    class="slider user-score-slider"
-                    min="0"
-                    max="10"
-                    step="0.5"
-                    value="5"
+                    class="picker__search"
+                    placeholder="Search language…"
                   />
-                  <div class="slider-values">
+                  <ul class="picker__list">
+                    <li class="picker__item">🇦🇲 Armenian</li>
+                    <li class="picker__item">🇬🇧 English</li>
+                    <li class="picker__item">🇩🇪 German</li>
+                    <li class="picker__item">🇫🇷 French</li>
+                    <li class="picker__item">🇯🇵 Japanese</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="sliders-container">
+                <!-- User Score -->
+                <div class="slider-group">
+                  <label class="slider-label">User Score</label>
+                  <div class="slider-container">
+                    <div class="slider-ticks">
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                    </div>
+                    <div class="slider-track">
+                      <div class="slider-range" id="userScoreRange"></div>
+                    </div>
+                    <div class="range-inputs">
+                      <input
+                        type="range"
+                        min="0"
+                        max="10"
+                        step="1"
+                        value="0"
+                        id="userScoreMin"
+                      />
+                      <input
+                        type="range"
+                        min="0"
+                        max="10"
+                        step="1"
+                        value="10"
+                        id="userScoreMax"
+                      />
+                    </div>
+                  </div>
+                  <div class="slider-labels">
                     <span>0</span>
+                    <span>5</span>
                     <span>10</span>
                   </div>
                 </div>
-              </div>
 
-              <div class="filter-block">
-                <p class="filter-label">Minimum User Votes</p>
-                <div class="slider-container">
-                  <input
-                    type="range"
-                    class="slider min-votes-slider"
-                    min="0"
-                    max="500"
-                    step="10"
-                    value="0"
-                  />
-                  <div class="slider-values">
+                <!-- Minimum User Votes -->
+                <div class="slider-group">
+                  <label class="slider-label">Minimum User Votes</label>
+                  <div class="slider-container">
+                    <div class="slider-ticks">
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                    </div>
+                    <div class="slider-track">
+                      <div class="slider-range" id="votesRange"></div>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="500"
+                      step="50"
+                      value="150"
+                      id="votes"
+                    />
+                  </div>
+                  <div class="slider-labels">
                     <span>0</span>
+                    <span>100</span>
+                    <span>200</span>
+                    <span>300</span>
+                    <span>400</span>
                     <span>500</span>
                   </div>
                 </div>
-              </div>
 
-              <!-- Runtime -->
-              <div class="filter-block">
-                <p class="filter-label">Runtime</p>
-                <div class="slider-container">
-                  <input
-                    type="range"
-                    class="slider runtime-slider"
-                    min="0"
-                    max="360"
-                    step="15"
-                    value="120"
-                  />
-                  <div class="slider-values">
-                    <span>0 min</span>
-                    <span>360 min</span>
+                <!-- Runtime -->
+                <div class="slider-group">
+                  <label class="slider-label">Runtime</label>
+                  <div class="slider-container">
+                    <div class="slider-ticks">
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                      <div class="tick"></div>
+                    </div>
+                    <div class="slider-track">
+                      <div class="slider-range" id="runtimeRange"></div>
+                    </div>
+                    <div class="range-inputs">
+                      <input
+                        type="range"
+                        min="0"
+                        max="360"
+                        step="15"
+                        value="90"
+                        id="runtimeMin"
+                      />
+                      <input
+                        type="range"
+                        min="0"
+                        max="360"
+                        step="15"
+                        value="210"
+                        id="runtimeMax"
+                      />
+                    </div>
+                  </div>
+                  <div class="slider-labels">
+                    <span>0</span>
+                    <span>120</span>
+                    <span>240</span>
+                    <span>360</span>
                   </div>
                 </div>
               </div>
