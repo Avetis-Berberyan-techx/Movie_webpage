@@ -103,7 +103,118 @@ searchAllReleases.addEventListener("change", () => {
 });
 
 //country releases
+const LANGUAGES = {
+  English: "en",
+  Spanish: "es",
+  French: "fr",
+  German: "de",
+  Italian: "it",
+  Portuguese: "pt",
+  Russian: "ru",
+  Japanese: "ja",
+  Korean: "ko",
+  Chinese: "zh",
+  Hindi: "hi",
+  Arabic: "ar",
+  Turkish: "tr",
+  Persian: "fa",
+  Polish: "pl",
+  Dutch: "nl",
+  Swedish: "sv",
+  Norwegian: "no",
+  Danish: "da",
+  Finnish: "fi",
+  Greek: "el",
+  Hebrew: "he",
+  Thai: "th",
+  Vietnamese: "vi",
+  Indonesian: "id",
+  Ukrainian: "uk",
+  Hungarian: "hu",
+  Czech: "cs",
+  Romanian: "ro",
+  Bulgarian: "bg",
+  Serbian: "sr",
+  Slovak: "sk",
+  Slovenian: "sl",
+  Estonian: "et",
+  Latvian: "lv",
+  Lithuanian: "lt",
+  Georgian: "ka",
+  Armenian: "hy",
+};
+
+const COUNTRIES = {
+  USA: "US",
+  UK: "GB",
+  Canada: "CA",
+  France: "FR",
+  Germany: "DE",
+  Italy: "IT",
+  Spain: "ES",
+  Portugal: "PT",
+  Russia: "RU",
+  Japan: "JP",
+  SouthKorea: "KR",
+  China: "CN",
+  India: "IN",
+  Iran: "IR",
+  Turkey: "TR",
+  Brazil: "BR",
+  Mexico: "MX",
+  Argentina: "AR",
+  Australia: "AU",
+  NewZealand: "NZ",
+  Sweden: "SE",
+  Norway: "NO",
+  Denmark: "DK",
+  Finland: "FI",
+  Netherlands: "NL",
+  Belgium: "BE",
+  Switzerland: "CH",
+  Austria: "AT",
+  Poland: "PL",
+  Ukraine: "UA",
+  Romania: "RO",
+  Bulgaria: "BG",
+  Greece: "GR",
+  Israel: "IL",
+  Egypt: "EG",
+  SouthAfrica: "ZA",
+  Armenia: "AM",
+  Georgia: "GE",
+};
+
+const countriesKeys = Object.keys(COUNTRIES);
+
+const languageKeys = Object.keys(LANGUAGES);
+
 const pickerCountry = document.querySelector(".picker--country");
+
+const pickerCountrylist = document.querySelector(
+  ".picker--country .picker__list",
+);
+const pickerLanguagelist = document.querySelector(
+  ".picker--language .picker__list",
+);
+
+languageKeys.forEach((lang) => {
+  pickerLanguagelist.insertAdjacentHTML(
+    "beforeend",
+    `
+    <li class="picker__item">${lang}</li>
+    `,
+  );
+});
+
+countriesKeys.forEach((country) => {
+  pickerCountrylist.insertAdjacentHTML(
+    "beforeend",
+    `
+    <li class="picker__item">${country}</li>
+    `,
+  );
+});
 
 searchAllCountries.addEventListener("change", () => {
   if (!searchAllCountries.checked) {
@@ -201,26 +312,42 @@ function getSelectedGenres() {
   );
 }
 
-// Language
-
 //keyword
+const KEYWORDS = {
+  "bounty hunter": 801,
+  holiday: 65,
+  kidnapping: 1930,
+  "santa claus": 1991,
+  "polar bear": 6678,
+  christmas: 207317,
+  "action comedy": 247799,
+  "family comedy": 298618,
+  "fantasy comedy": 324005,
+  admiring: 325761,
+  celebratory: 325781,
+  excited: 325811,
+  fish: 1357,
+  "sydney, australia": 5656,
+  "parent child relationship": 970,
+  anthropomorphism: 11477,
+  harbor: 10026,
+  underwater: 14785,
+  shark: 15097,
+  pelican: 33635,
+  "fish tank": 33759,
+  "great barrier reef": 33760,
+  "sea turtle": 154896,
+  "missing child": 156948,
+  aftercreditsstinger: 179430,
+  duringcreditsstinger: 179431,
+  "short-term memory loss": 180557,
+  clownfish: 180568,
+  "father son reunion": 180574,
+  "protective father": 181068,
+  melodramatic: 325835,
+};
 
-const availableKeywords = [
-  "restaurant",
-  "cafe",
-  "bar",
-  "hotel",
-  "museum",
-  "park",
-  "beach",
-  "shopping",
-  "gym",
-  "spa",
-  "vegan",
-  "pet-friendly",
-  "luxury",
-  "budget",
-];
+const availableKeywords = Object.keys(KEYWORDS);
 
 const wrapper = document.getElementById("keywordWrapper");
 const input = document.getElementById("keywordInput");
@@ -373,3 +500,67 @@ function updateRuntime() {
 runtimeMin.addEventListener("input", updateRuntime);
 runtimeMax.addEventListener("input", updateRuntime);
 updateRuntime();
+
+//fetching
+
+//API key
+const API = "https://api.themoviedb.org/3/discover/movie";
+const apiKey =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzQ4Yzg5ZjI1OWU1YWVkMWRhM2VkZDgwODgyZmNmOSIsIm5iZiI6MTc2OTQxMjA4MC43NTksInN1YiI6IjY5NzcxNWYwNDQyNmMwYjlkODEwNmJiOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ymOXE-6xA21y1K6OGPXTP5rbTOdMECLxPdJzsQbgzrw";
+
+const GENRES = {
+  Action: 28,
+  Adventure: 12,
+  Animation: 16,
+  Comedy: 35,
+  Crime: 80,
+  Documentary: 99,
+  Drama: 18,
+  Family: 10751,
+  Fantasy: 14,
+  History: 36,
+  Horror: 27,
+  Music: 10402,
+  Mystery: 9648,
+  Romance: 10749,
+  "Science Fiction": 878,
+  TVMovie: 10770,
+  Thriller: 53,
+  War: 10752,
+  Western: 37,
+};
+
+async function fetchMovies(page = 1, ...filters) {
+  // Default query parameters
+  const params = new URLSearchParams({
+    page: page,
+    ...filters, // merge all filters
+  });
+
+  const url = `${API}?${params.toString()}`;
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`);
+  }
+
+  return response.json();
+}
+// Example usage
+
+const moviesContainer = document.querySelector(".movies");
+
+const renderMovieCards = async (reset = true, page = 1, ...filters) => {
+  if (reset) moviesContainer.innerHTML = "";
+
+  data = await fetchMovies(page, ...filters);
+  console.log(data.results);
+};
+
+// renderMovieCards();
