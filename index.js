@@ -7,10 +7,10 @@ const sortButton = document.getElementById("sort-apearance-button");
 const sortWrapper = document.querySelector(".sort__footer");
 
 //sort selection block
-const select = document.querySelector(".sort__footer--select");
-const selected = select.querySelector(".sort__footer--selected");
-const options = select.querySelector(".sort__footer--options");
-const items = options.querySelectorAll("li");
+const sortSelect = document.querySelector(".sort__footer--select");
+const sortSelected = sortSelect.querySelector(".sort__footer--selected");
+const sortOptions = sortSelect.querySelector(".sort__footer--options");
+const sortItems = sortOptions.querySelectorAll("li");
 
 //-----------filters------------
 
@@ -32,23 +32,22 @@ const filtersWrapper = document.querySelector(".filters__footer");
 //button of sort filter appearance
 const filtersButton = document.getElementById("filters-apearance-button");
 
-selected.addEventListener("click", () => {
-  options.style.display = options.style.display === "block" ? "none" : "block";
+sortSelected.addEventListener("click", () => {
+  sortOptions.style.display =
+    sortOptions.style.display === "block" ? "none" : "block";
 });
 
-items.forEach((item) => {
+sortItems.forEach((item) => {
   item.addEventListener("click", () => {
-    selected.textContent = item.textContent;
-    options.style.display = "none";
-    // Optional: store value
-    // console.log('Selected value:', item.dataset.value);
+    sortSelected.textContent = item.textContent;
+    sortOptions.style.display = "none";
   });
 });
 
 // Close dropdown if clicked outside
 document.addEventListener("click", (e) => {
-  if (!select.contains(e.target)) {
-    options.style.display = "none";
+  if (!sortSelect.contains(e.target)) {
+    sortOptions.style.display = "none";
   }
 });
 
@@ -102,7 +101,7 @@ searchAllReleases.addEventListener("change", () => {
   }
 });
 
-//country releases
+//country releases and language picker
 const LANGUAGES = {
   English: "en",
   Spanish: "es",
@@ -275,25 +274,21 @@ const toBtn = document.getElementById("toBtn");
 
 const toPicker = new AirDatepicker(toInput, {
   dateFormat: "yyyy-MM-dd",
+  onSelect: () => {
+    toPicker.hide(); // ✅ force close
+  },
 });
 
 const fromPicker = new AirDatepicker(fromInput, {
   dateFormat: "yyyy-MM-dd",
-  onSelect({ date }) {
-    toPicker.update({
-      minDate: date,
-    });
+  onSelect: ({ date }) => {
+    toPicker.update({ minDate: date });
+    fromPicker.hide(); // ✅ force close
   },
 });
 
-// 🔥 Open picker when clicking icon
-fromBtn.addEventListener("click", () => {
-  fromPicker.show();
-});
-
-toBtn.addEventListener("click", () => {
-  toPicker.show();
-});
+fromBtn.addEventListener("click", () => fromPicker.show());
+toBtn.addEventListener("click", () => toPicker.show());
 
 //Genres
 
@@ -314,54 +309,63 @@ function getSelectedGenres() {
 
 //keyword
 const KEYWORDS = {
-  "bounty hunter": 801,
-  holiday: 65,
-  kidnapping: 1930,
-  "santa claus": 1991,
-  "polar bear": 6678,
-  christmas: 207317,
-  "action comedy": 247799,
-  "family comedy": 298618,
-  "fantasy comedy": 324005,
-  admiring: 325761,
-  celebratory: 325781,
-  excited: 325811,
-  fish: 1357,
-  "sydney, australia": 5656,
-  "parent child relationship": 970,
-  anthropomorphism: 11477,
-  harbor: 10026,
-  underwater: 14785,
-  shark: 15097,
-  pelican: 33635,
-  "fish tank": 33759,
-  "great barrier reef": 33760,
-  "sea turtle": 154896,
-  "missing child": 156948,
-  aftercreditsstinger: 179430,
-  duringcreditsstinger: 179431,
-  "short-term memory loss": 180557,
-  clownfish: 180568,
-  "father son reunion": 180574,
-  "protective father": 181068,
-  melodramatic: 325835,
+  superhero: 9715,
+  "based on novel": 818,
+  sequel: 523,
+  prequel: 414,
+  remake: 968,
+  reboot: 9748,
+
+  friendship: 6054,
+  love: 9840,
+  revenge: 9748,
+  betrayal: 6054,
+
+  "time travel": 4379,
+  dystopia: 4565,
+  post_apocalyptic: 4458,
+  future: 9831,
+
+  war: 1956,
+  military: 4165,
+  politics: 6054,
+
+  biography: 9672,
+  true_story: 9672,
+
+  sports: 180547,
+  "martial arts": 779,
+  boxing: 9743,
+
+  zombie: 12377,
+  vampire: 3133,
+  alien: 9951,
+  monster: 947,
+
+  anime: 210024,
+  "based on manga": 206563,
+  "based on comic": 9715,
+
+  heist: 10349,
+  spy: 470,
+  detective: 703,
 };
 
 const availableKeywords = Object.keys(KEYWORDS);
 
-const wrapper = document.getElementById("keywordWrapper");
-const input = document.getElementById("keywordInput");
-const dropdown = document.getElementById("keywordDropdown");
+const keywordWrapper = document.getElementById("keywordWrapper");
+const keywordInput = document.getElementById("keywordInput");
+const keywordDropdown = document.getElementById("keywordDropdown");
 
 const selectedKeywords = new Set();
 
 // Focus input when clicking anywhere inside wrapper
-wrapper.addEventListener("click", () => {
-  input.focus();
+keywordWrapper.addEventListener("click", () => {
+  keywordInput.focus();
 });
 
 function renderPills() {
-  wrapper.querySelectorAll(".keyword-pill").forEach((p) => p.remove());
+  keywordWrapper.querySelectorAll(".keyword-pill").forEach((p) => p.remove());
 
   selectedKeywords.forEach((kw) => {
     const pill = document.createElement("div");
@@ -370,15 +374,15 @@ function renderPills() {
       ${kw}
       <button class="remove-btn" data-keyword="${kw}">×</button>
     `;
-    wrapper.insertBefore(pill, input);
+    keywordWrapper.insertBefore(pill, keywordInput);
   });
 }
 
 function showDropdown(value) {
-  dropdown.innerHTML = "";
+  keywordDropdown.innerHTML = "";
 
   if (!value) {
-    dropdown.style.display = "none";
+    keywordDropdown.style.display = "none";
     return;
   }
 
@@ -394,45 +398,48 @@ function showDropdown(value) {
     item.addEventListener("click", () => {
       selectedKeywords.add(kw);
       renderPills();
-      input.value = "";
-      dropdown.style.display = "none";
-      input.focus();
+      keywordInput.value = "";
+      keywordDropdown.style.display = "none";
+      keywordInput.focus();
     });
 
-    dropdown.appendChild(item);
+    keywordDropdown.appendChild(item);
   });
 
-  dropdown.style.display = filtered.length ? "block" : "none";
+  keywordDropdown.style.display = filtered.length ? "block" : "none";
 }
 
-input.addEventListener("input", () => {
-  showDropdown(input.value.trim());
+keywordInput.addEventListener("input", () => {
+  showDropdown(keywordInput.value.trim());
 });
 
-input.addEventListener("keydown", (e) => {
+keywordInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
-    const val = input.value.trim();
+    const val = keywordInput.value.trim();
     if (val && !selectedKeywords.has(val)) {
       selectedKeywords.add(val);
       renderPills();
     }
-    input.value = "";
-    dropdown.style.display = "none";
+    keywordInput.value = "";
+    keywordDropdown.style.display = "none";
   }
 });
 
-wrapper.addEventListener("click", (e) => {
+keywordWrapper.addEventListener("click", (e) => {
   if (e.target.classList.contains("remove-btn")) {
     selectedKeywords.delete(e.target.dataset.keyword);
     renderPills();
-    input.focus();
+    keywordInput.focus();
   }
 });
 
 document.addEventListener("click", (e) => {
-  if (!wrapper.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.style.display = "none";
+  if (
+    !keywordWrapper.contains(e.target) &&
+    !keywordDropdown.contains(e.target)
+  ) {
+    keywordDropdown.style.display = "none";
   }
 });
 
@@ -503,11 +510,7 @@ updateRuntime();
 
 //fetching
 
-//API key
-const API = "https://api.themoviedb.org/3/discover/movie";
-const apiKey =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzQ4Yzg5ZjI1OWU1YWVkMWRhM2VkZDgwODgyZmNmOSIsIm5iZiI6MTc2OTQxMjA4MC43NTksInN1YiI6IjY5NzcxNWYwNDQyNmMwYjlkODEwNmJiOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ymOXE-6xA21y1K6OGPXTP5rbTOdMECLxPdJzsQbgzrw";
-
+// Genre mapping
 const GENRES = {
   Action: 28,
   Adventure: 12,
@@ -524,43 +527,208 @@ const GENRES = {
   Mystery: 9648,
   Romance: 10749,
   "Science Fiction": 878,
-  TVMovie: 10770,
+  "TV Movie": 10770,
   Thriller: 53,
   War: 10752,
   Western: 37,
 };
 
-async function fetchMovies(page = 1, ...filters) {
-  // Default query parameters
-  const params = new URLSearchParams({
-    page: page,
-    ...filters, // merge all filters
-  });
+// Release type mapping
+const RELEASE_TYPES = {
+  Premiere: 1,
+  "Theatrical (limited)": 2,
+  Theatrical: 3,
+  Digital: 4,
+  Physical: 5,
+  TV: 6,
+};
 
-  const url = `${API}?${params.toString()}`;
-
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+const getFilterURL = (filters) => {
+  let url = "";
+  for (let [key, value] of Object.entries(filters)) {
+    if (Array.isArray(value)) {
+      // Join array values with commas
+      url += `${key}=${value.map((v) => encodeURIComponent(v)).join(",")}&`;
+    } else {
+      url += `${key}=${encodeURIComponent(value)}&`;
+    }
   }
+  // Remove trailing '&' if it exists
+  if (url.endsWith("&")) url = url.slice(0, -1);
+  return url;
+};
 
-  return response.json();
+async function discoverMovies(params = {}) {
+  const apiKey = "2de47dd8b744f69009564aec2ad06d07"; // ← Replace with your own TMDB API key
+  const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&`;
+
+  // Build query string
+  const filtersURL = getFilterURL(params);
+
+  const url = `${baseUrl}${filtersURL}`;
+  console.log(url);
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`TMDB error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("Discover Movies fetch failed:", err);
+    throw err;
+  }
 }
-// Example usage
 
 const moviesContainer = document.querySelector(".movies");
 
-const renderMovieCards = async (reset = true, page = 1, ...filters) => {
+function renderMovies(data, reset = true) {
   if (reset) moviesContainer.innerHTML = "";
 
-  data = await fetchMovies(page, ...filters);
-  console.log(data.results);
+  data.forEach((obj) => {
+    const imageUrl = obj.backdrop_path
+      ? `https://image.tmdb.org/t/p/w1280${obj.backdrop_path}`
+      : "https://via.placeholder.com/500x280?text=No+Image";
+    moviesContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="movie-card">
+            <div class="movie-card__image">
+              <img
+                class="movie-card__img"
+                src="${imageUrl}
+"
+                alt="Movie Image"
+              />
+            </div>
+
+            <div class="movie-card__rating">
+              <div class="movie-card__rating-circle">${Math.floor(obj.vote_average * 10)}%</div>
+            </div>
+
+            <div class="movie-card__data">
+              <div class="movie-card__title">
+                <h3 class="movie-card__title-text">${obj.title}</h3>
+              </div>
+
+              <div class="movie-card__date">
+                <p class="movie-card__date-text">${obj.release_date}</p>
+              </div>
+
+              <div class="movie-card__description">
+                <p class="movie-card__description-text">
+                  ${obj.overview}
+                </p>
+              </div>
+            </div>
+          </div>
+      `,
+    );
+  });
+}
+const SORT_TEXTS = {
+  "Popularity Ascending": "popularity.asc",
+  "Popularity Descending": "popularity.desc",
+  "Rating Ascending": "vote_average.asc",
+  "Rating Descending": "vote_average.desc",
+  "Release Date Ascending": "primary_release_date.asc",
+  "Release Date Descending": "primary_release_date.desc",
+  "A-Z": "title.asc",
+  "Z-A": "title.desc",
 };
 
-// renderMovieCards();
+const movieFilterButton = document.getElementById("movie_filter");
+const sortBy = document.querySelector(".sort");
+const availabalities = [stream, free, ads, rent, buy];
+const releaseTypes = document.querySelectorAll(".release-types .checkbox-item");
+const genresList = document.querySelectorAll(".genres__list .genre-pill");
+const pickerLanguageInput = document.querySelector(
+  ".picker--language .picker__button .picker__value",
+);
+
+discoverMovies()
+  .then((data) => {
+    console.log(data.results);
+    renderMovies(data.results);
+  })
+  .catch(console.error);
+
+movieFilterButton.addEventListener("click", () => {
+  const filters = {
+    sort_by: SORT_TEXTS[sortSelected.innerHTML], //
+    include_adult: false,
+    include_video: false,
+    page: 1,
+  };
+
+  // availabalities
+  if (!searchAll.checked) {
+    let tempchecked = [];
+    availabalities.forEach((availabality) => {
+      if (availabality.checked) {
+        tempchecked.push(availabality.value);
+      }
+    });
+    filters["with_watch_monetization_types"] = tempchecked;
+  }
+
+  if (!searchAllReleases.checked) {
+    let tempchecked = [];
+    releaseTypes.forEach((type) => {
+      if (type.getElementsByTagName("input")[0].checked) {
+        let releaseId =
+          RELEASE_TYPES[type.getElementsByTagName("label")[0].innerHTML];
+        tempchecked.push(releaseId);
+      }
+    });
+    filters["with_release_type"] = tempchecked;
+
+    if (!searchAllCountries.checked) {
+      const countryValue = pickerCountry.querySelector(
+        ".picker__button .picker__value",
+      ).innerHTML;
+
+      filters["with_origin_country"] = COUNTRIES[countryValue];
+    }
+  }
+  if (fromInput.value !== "") {
+    filters["primary_release_date.gte"] = fromInput.value;
+  }
+  if (toInput.value !== "") {
+    filters["primary_release_date.lte"] = toInput.value;
+  }
+  let tempchecked = [];
+  genresList.forEach((genre) => {
+    if (genre.classList.contains("is-active")) {
+      tempchecked.push(GENRES[genre.innerHTML]);
+    }
+  });
+  if (tempchecked.length) filters["with_genres"] = tempchecked;
+
+  filters["vote_average_gte"] = userScoreMin.value;
+  filters["vote_average_lte"] = userScoreMax.value;
+  filters["vote_count_gte"] = votes.value;
+  filters["with_runtime_gte"] = runtimeMin.value;
+  filters["with_runtime_lte"] = runtimeMax.value;
+  let keywords = [...selectedKeywords];
+  keywords = keywords.map((keyword) => {
+    return KEYWORDS[keyword];
+  });
+
+  if (keywords.length) {
+    filters["with_keywords"] = keywords;
+  }
+
+  if (pickerLanguageInput.innerHTML !== "Select language") {
+    filters["with_original_language"] =
+      LANGUAGES[pickerLanguageInput.innerHTML];
+  }
+  discoverMovies(filters)
+    .then((data) => {
+      console.log(data.results);
+      renderMovies(data.results);
+    })
+    .catch(console.error);
+});

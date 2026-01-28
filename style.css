@@ -269,11 +269,13 @@ header {
 .sort__main--arrow.active img {
   transform: rotate(90deg);
 }
-.sort__footer {
+.footer {
   display: none;
   padding-bottom: 12px;
 }
-.sort__footer--header {
+.sort__footer {
+  display: none;
+  padding: 0 0 13px 0;
 }
 .sort__footer--select {
   position: relative;
@@ -661,6 +663,7 @@ h3 {
 
 .genres {
   font-family: system-ui, sans-serif;
+  margin-top: 15px;
 }
 
 .genres__title {
@@ -1092,6 +1095,7 @@ input[type="range"]::-moz-range-thumb {
 /* Movie Card */
 .movies {
   width: 75%;
+  height: fit-content;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
   gap: 20px;
@@ -1100,6 +1104,7 @@ input[type="range"]::-moz-range-thumb {
 /* Block */
 .movie-card {
   width: 200px;
+  height: fit-content;
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -1111,9 +1116,14 @@ input[type="range"]::-moz-range-thumb {
 
 /* Elements */
 .movie-card__image {
-  width: 100%;
+  /* width: 100%;
   height: 250px;
+  overflow: hidden; */
+  width: 100%;
+  aspect-ratio: 16 / 9; /* 👈 same for all movies */
   overflow: hidden;
+  border-radius: 12px;
+  height: 200px;
 }
 
 .movie-card__img {
