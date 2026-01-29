@@ -90,11 +90,14 @@ const checkboxReleaseTypesWrapper = document.querySelector(".release-types");
 //releases checkboxes
 const searchAllReleases = document.getElementById("searchAllReleases");
 const searchAllCountries = document.getElementById("searchAllCountries");
+const pickerCountry = document.querySelector(".picker--country");
 
 searchAllReleases.addEventListener("change", () => {
   if (searchAllReleases.checked) {
     checkboxItemReleasesWrapper.style.display = "none";
     checkboxReleaseTypesWrapper.style.display = "none";
+    pickerCountry.style.display = "none";
+    searchAllCountries.checked = true;
   } else {
     checkboxItemReleasesWrapper.style.display = "flex";
     checkboxReleaseTypesWrapper.style.display = "flex";
@@ -187,8 +190,6 @@ const COUNTRIES = {
 const countriesKeys = Object.keys(COUNTRIES);
 
 const languageKeys = Object.keys(LANGUAGES);
-
-const pickerCountry = document.querySelector(".picker--country");
 
 const pickerCountrylist = document.querySelector(
   ".picker--country .picker__list",
@@ -548,7 +549,7 @@ const getFilterURL = (filters) => {
   for (let [key, value] of Object.entries(filters)) {
     if (Array.isArray(value)) {
       // Join array values with commas
-      url += `${key}=${value.map((v) => encodeURIComponent(v)).join(",")}&`;
+      url += `${key}=${value.map((v) => encodeURIComponent(v)).join("|")}&`;
     } else {
       url += `${key}=${encodeURIComponent(value)}&`;
     }
@@ -588,9 +589,12 @@ function renderMovies(data, reset = true) {
   if (reset) moviesContainer.innerHTML = "";
 
   data.forEach((obj) => {
-    const imageUrl = obj.backdrop_path
-      ? `https://image.tmdb.org/t/p/w1280${obj.backdrop_path}`
-      : "https://via.placeholder.com/500x280?text=No+Image";
+    const imageUrl = obj.poster_path
+      ? `https://image.tmdb.org/t/p/w780${obj.poster_path}`
+      : obj.backdrop_path
+        ? `https://image.tmdb.org/t/p/w1280${obj.backdrop_path}`
+        : `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg`;
+    let degree = (Math.floor(obj.vote_average * 10) * 360) / 100;
     moviesContainer.insertAdjacentHTML(
       "beforeend",
       `
@@ -604,7 +608,7 @@ function renderMovies(data, reset = true) {
               />
             </div>
 
-            <div class="movie-card__rating">
+            <div class="movie-card__rating" style="background:conic-gradient(#36a2eb 0deg ${degree}deg, #fff ${degree}deg 360deg);">
               <div class="movie-card__rating-circle">${Math.floor(obj.vote_average * 10)}%</div>
             </div>
 
@@ -619,7 +623,7 @@ function renderMovies(data, reset = true) {
 
               <div class="movie-card__description">
                 <p class="movie-card__description-text">
-                  ${obj.overview}
+                  ${obj.overview.slice(0, 100)}...
                 </p>
               </div>
             </div>
@@ -647,6 +651,14 @@ const genresList = document.querySelectorAll(".genres__list .genre-pill");
 const pickerLanguageInput = document.querySelector(
   ".picker--language .picker__button .picker__value",
 );
+const loadmoreBtn = document.getElementById("loadmoreButton");
+
+const filters = {
+  sort_by: SORT_TEXTS[sortSelected.innerHTML], //
+  include_adult: false,
+  include_video: false,
+  page: 1,
+};
 
 discoverMovies()
   .then((data) => {
@@ -656,12 +668,8 @@ discoverMovies()
   .catch(console.error);
 
 movieFilterButton.addEventListener("click", () => {
-  const filters = {
-    sort_by: SORT_TEXTS[sortSelected.innerHTML], //
-    include_adult: false,
-    include_video: false,
-    page: 1,
-  };
+  filters["page"] = 1;
+  filters["sort_by"] = SORT_TEXTS[sortSelected.innerHTML];
 
   // availabalities
   if (!searchAll.checked) {
@@ -672,8 +680,10 @@ movieFilterButton.addEventListener("click", () => {
       }
     });
     filters["with_watch_monetization_types"] = tempchecked;
+  } else {
+    delete filters["with_watch_monetization_types"];
   }
-
+  //releases
   if (!searchAllReleases.checked) {
     let tempchecked = [];
     releaseTypes.forEach((type) => {
@@ -691,22 +701,39 @@ movieFilterButton.addEventListener("click", () => {
       ).innerHTML;
 
       filters["with_origin_country"] = COUNTRIES[countryValue];
+    } else {
+      delete filters["with_origin_country"];
     }
+  } else {
+    delete filters["with_release_type"];
+    delete filters["with_origin_country"];
   }
+  //release Date
   if (fromInput.value !== "") {
     filters["primary_release_date.gte"] = fromInput.value;
+  } else {
+    delete filters["primary_release_date.gte"];
   }
   if (toInput.value !== "") {
     filters["primary_release_date.lte"] = toInput.value;
+  } else {
+    delete filters["primary_release_date.lte"];
   }
+
+  //Genres
   let tempchecked = [];
   genresList.forEach((genre) => {
     if (genre.classList.contains("is-active")) {
       tempchecked.push(GENRES[genre.innerHTML]);
     }
   });
-  if (tempchecked.length) filters["with_genres"] = tempchecked;
+  if (tempchecked.length) {
+    filters["with_genres"] = tempchecked;
+  } else {
+    delete filters["with_genres"];
+  }
 
+  //rating,min vote count, runtime ranges
   filters["vote_average_gte"] = userScoreMin.value;
   filters["vote_average_lte"] = userScoreMax.value;
   filters["vote_count_gte"] = votes.value;
@@ -719,16 +746,30 @@ movieFilterButton.addEventListener("click", () => {
 
   if (keywords.length) {
     filters["with_keywords"] = keywords;
+  } else {
+    delete filters["with_keywords"];
   }
 
   if (pickerLanguageInput.innerHTML !== "Select language") {
     filters["with_original_language"] =
       LANGUAGES[pickerLanguageInput.innerHTML];
+  } else {
+    delete filters["with_original_language"];
   }
   discoverMovies(filters)
     .then((data) => {
       console.log(data.results);
       renderMovies(data.results);
+    })
+    .catch(console.error);
+});
+
+loadmoreBtn.addEventListener("click", () => {
+  filters.page += 1;
+  discoverMovies(filters)
+    .then((data) => {
+      console.log(data.results);
+      renderMovies(data.results, (reset = false));
     })
     .catch(console.error);
 });
