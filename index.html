@@ -3,325 +3,443 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie webpage</title>
+    <title>Movie Database</title>
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.css"
     />
   </head>
-  <body>
-    <header>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+  <body class="page">
+    <!-- Header Block -->
+    <header class="header">
+      <button class="hamburger" type="button" aria-label="Toggle menu">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
 
-      <div class="left">
-        <ul class="left__nav">
-          <li class="left__nav--item-icon">
-            <a href="" class="left__nav--icon">
+      <nav class="nav nav--left">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--logo">
+            <a href="#" class="nav__link">
               <img
+                class="nav__logo"
                 src="./icons/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
                 alt="The Movie Database (TMDB)"
               />
             </a>
           </li>
-          <li class="left__nav--item">Movies</li>
-          <li class="left__nav--item">TV Shows</li>
-          <li class="left__nav--item">People</li>
-          <li class="left__nav--item">More</li>
+          <li class="nav__item"><a href="#" class="nav__link">Movies</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">TV Shows</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">People</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">More</a></li>
         </ul>
-      </div>
-      <div class="right">
-        <ul class="right__nav">
-          <li class="right__nav--item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-plus-square"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
-              />
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
-              />
-            </svg>
+      </nav>
+
+      <nav class="nav nav--right">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <button class="nav__icon-button" aria-label="Add new">
+              <svg
+                class="nav__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+                />
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                />
+              </svg>
+            </button>
           </li>
-          <li class="right__nav--item">EN</li>
-          <li class="right__nav--item">Login</li>
-          <li class="right__nav--item">Join TMDB</li>
-          <li class="right__nav--item-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-search"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-              />
-            </svg>
+          <li class="nav__item"><a href="#" class="nav__link">EN</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">Login</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">Join TMDB</a></li>
+          <li class="nav__item">
+            <button class="nav__icon-button" aria-label="Search">
+              <svg
+                class="nav__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                />
+              </svg>
+            </button>
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
 
-    <main>
-      <h2 class="popular_movies">Popular Movies</h2>
-      <div class="wrapper">
-        <section class="filtering">
-          <div class="sort">
-            <div class="sort__main">
-              <h2 class="sort__main--heading">Sort</h2>
+    <main class="main">
+      <h1 class="main__title">Popular Movies</h1>
+
+      <div class="content">
+        <!-- Sidebar Block -->
+        <aside class="sidebar">
+          <!-- Sort Block -->
+          <section class="sort">
+            <header class="sort__header">
+              <h2 class="sort__title">Sort</h2>
               <button
                 type="button"
-                id="sort-apearance-button"
-                class="sort__main--arrow"
+                class="sort__toggle"
+                id="sortToggleButton"
+                aria-expanded="false"
               >
-                <img src="./icons/arror_right.svg" alt="arrow" />
+                <img
+                  class="sort__toggle-icon"
+                  src="./icons/arror_right.svg"
+                  alt=""
+                />
               </button>
-            </div>
-            <div class="sort__footer">
-              <p class="sort__footer--header">Sort Results By</p>
+            </header>
 
-              <div class="sort__footer--select">
-                <div class="sort__footer--selected">Popularity Descending</div>
-                <ul class="sort__footer--options">
-                  <li data-value="pop_asc">Popularity Ascending</li>
-                  <li data-value="pop_desc">Popularity Descending</li>
-                  <li data-value="rat_asc">Rating Ascending</li>
-                  <li data-value="rat_desc">Rating Descending</li>
-                  <li data-value="reld_asc">Release Date Ascending</li>
-                  <li data-value="reld_desc">Release Date Descending</li>
-                  <li data-value="A-Z">A-Z</li>
-                  <li data-value="Z-A">Z-A</li>
+            <div class="sort__body" id="sortBody">
+              <label class="sort__label">Sort Results By</label>
+              <div class="select" id="sortSelect">
+                <button type="button" class="select__button">
+                  <span class="select__value">Popularity Descending</span>
+                </button>
+                <ul class="select__dropdown">
+                  <li class="select__option" data-value="pop_asc">
+                    Popularity Ascending
+                  </li>
+                  <li class="select__option" data-value="pop_desc">
+                    Popularity Descending
+                  </li>
+                  <li class="select__option" data-value="rat_asc">
+                    Rating Ascending
+                  </li>
+                  <li class="select__option" data-value="rat_desc">
+                    Rating Descending
+                  </li>
+                  <li class="select__option" data-value="reld_asc">
+                    Release Date Ascending
+                  </li>
+                  <li class="select__option" data-value="reld_desc">
+                    Release Date Descending
+                  </li>
+                  <li class="select__option" data-value="A-Z">A-Z</li>
+                  <li class="select__option" data-value="Z-A">Z-A</li>
                 </ul>
               </div>
             </div>
-          </div>
-          <!-- filters -->
-          <div class="filters">
-            <div class="filters__main">
-              <h2 class="filters__main--heading">Filters</h2>
+          </section>
+
+          <!-- Filters Block -->
+          <section class="filters">
+            <header class="filters__header">
+              <h2 class="filters__title">Filters</h2>
               <button
                 type="button"
-                id="filters-apearance-button"
-                class="filters__main--arrow"
+                class="filters__toggle"
+                id="filtersToggleButton"
+                aria-expanded="false"
               >
-                <img src="./icons/arror_right.svg" alt="arrow" />
-              </button>
-            </div>
-            <div class="filters__footer">
-              <h3>Availabalities</h3>
-              <div class="availabalities">
-                <input
-                  type="checkbox"
-                  id="search_all"
-                  name="search_all"
-                  value="search_all"
-                  class="box"
-                  checked
+                <img
+                  class="filters__toggle-icon"
+                  src="./icons/arror_right.svg"
+                  alt=""
                 />
-                <label for="search_all">Search all availabalities?</label><br />
-                <div class="availabalities__box">
-                  <input
-                    type="checkbox"
-                    id="stream"
-                    name="stream"
-                    value="stream"
-                    class="box"
-                    checked
-                  />
-                  <label for="stream">Stream</label><br />
-                  <input
-                    type="checkbox"
-                    id="free"
-                    name="free"
-                    value="free"
-                    class="box"
-                    checked
-                  />
-                  <label for="free">Free</label><br />
-                  <input
-                    type="checkbox"
-                    id="ads"
-                    name="ads"
-                    value="ads"
-                    class="box"
-                    checked
-                  />
-                  <label for="ads">Ads</label><br />
-                  <input
-                    type="checkbox"
-                    id="rent"
-                    name="rent"
-                    value="rent"
-                    class="box"
-                    checked
-                  />
-                  <label for="rent">Rent</label><br />
-                  <input
-                    type="checkbox"
-                    id="buy"
-                    name="buy"
-                    value="buy"
-                    class="box"
-                    checked
-                  />
-                  <label for="buy">Buy</label><br />
-                </div>
-              </div>
+              </button>
+            </header>
 
-              <h3>Release Dates</h3>
-
-              <div class="checkbox-group">
-                <div class="checkbox-item">
-                  <input type="checkbox" id="searchAllReleases" checked />
-                  <label for="searchAllReleases">Search all releases?</label>
+            <div class="filters__body" id="filtersBody">
+              <!-- Availabilities -->
+              <fieldset class="filter-group">
+                <legend class="filter-group__title">Availabilities</legend>
+                <div class="checkbox">
+                  <input
+                    type="checkbox"
+                    id="searchAll"
+                    class="checkbox__input"
+                    checked
+                  />
+                  <label for="searchAll" class="checkbox__label"
+                    >Search all availabilities?</label
+                  >
                 </div>
-                <div class="checkbox-item checkbox-item-country-releases">
-                  <input type="checkbox" id="searchAllCountries" checked />
-                  <label for="searchAllCountries">Search all countries?</label>
-                </div>
-              </div>
-              <!-- country picker -->
-              <div class="picker picker--country">
-                <button class="picker__button" type="button">
-                  <span class="picker__value">Select country</span>
-                  <svg class="picker__chevron" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
-                </button>
-
-                <div class="picker__panel">
-                  <input class="picker__search" placeholder="Search country…" />
-                  <ul class="picker__list">
-                    <!-- here are countries -->
-                  </ul>
-                </div>
-              </div>
-              <div class="release-types">
-                <div class="checkbox-item">
-                  <input type="checkbox" id="theatrical" checked />
-                  <label for="theatrical">Theatrical (limited)</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" id="theatricalWide" checked />
-                  <label for="theatricalWide">Theatrical</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" id="premiere" checked />
-                  <label for="premiere">Premiere</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" id="digital" checked />
-                  <label for="digital">Digital</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" id="physical" checked />
-                  <label for="physical">Physical</label>
-                </div>
-                <div class="checkbox-item">
-                  <input type="checkbox" id="tv" checked />
-                  <label for="tv">TV</label>
-                </div>
-              </div>
-              <div class="date-filter">
-                <div class="date-filter__from">
-                  <label for="from">From:</label>
-
-                  <div class="date-filter__field">
+                <div class="filter-group__content" id="availabilitiesContent">
+                  <div class="checkbox">
                     <input
-                      type="text"
-                      id="from"
-                      name="from"
-                      autocomplete="off"
+                      type="checkbox"
+                      id="stream"
+                      class="checkbox__input"
+                      value="stream"
+                      checked
                     />
+                    <label for="stream" class="checkbox__label">Stream</label>
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="free"
+                      class="checkbox__input"
+                      checked
+                      value="free"
+                    />
+                    <label for="free" class="checkbox__label">Free</label>
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="ads"
+                      class="checkbox__input"
+                      checked
+                      value="ads"
+                    />
+                    <label for="ads" class="checkbox__label">Ads</label>
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="rent"
+                      class="checkbox__input"
+                      checked
+                      value="rent"
+                    />
+                    <label for="rent" class="checkbox__label">Rent</label>
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="buy"
+                      class="checkbox__input"
+                      checked
+                      value="buy"
+                    />
+                    <label for="buy" class="checkbox__label">Buy</label>
+                  </div>
+                </div>
+              </fieldset>
 
-                    <button type="button" class="date-filter__btn" id="fromBtn">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-calendar3-event"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"
-                        />
-                        <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-                      </svg>
-                    </button>
+              <!-- Release Dates -->
+              <fieldset class="filter-group">
+                <legend class="filter-group__title">Release Dates</legend>
+                <div class="checkbox">
+                  <input
+                    type="checkbox"
+                    id="searchAllReleases"
+                    class="checkbox__input"
+                    checked
+                  />
+                  <label for="searchAllReleases" class="checkbox__label"
+                    >Search all releases?</label
+                  >
+                </div>
+                <div
+                  class="checkbox checkbox--nested"
+                  id="searchCountriesCheckbox"
+                >
+                  <input
+                    type="checkbox"
+                    id="searchAllCountries"
+                    class="checkbox__input"
+                    checked
+                  />
+                  <label for="searchAllCountries" class="checkbox__label"
+                    >Search all countries?</label
+                  >
+                </div>
+
+                <!-- Country Picker -->
+                <div class="picker picker--hidden" id="countryPicker">
+                  <button class="picker__button" type="button">
+                    <span class="picker__value">Select country</span>
+                    <svg class="picker__chevron" viewBox="0 0 24 24">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                  <div class="picker__panel">
+                    <input
+                      class="picker__search"
+                      placeholder="Search country…"
+                    />
+                    <ul class="picker__list"></ul>
                   </div>
                 </div>
 
-                <div class="date-filter__to">
-                  <label for="to">To:</label>
-
-                  <div class="date-filter__field">
-                    <input type="text" id="to" name="to" autocomplete="off" />
-
-                    <button type="button" class="date-filter__btn" id="toBtn">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-calendar3-event"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"
-                        />
-                        <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-                      </svg>
-                    </button>
+                <!-- Release Types -->
+                <div class="filter-group__content" id="releaseTypesContent">
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="theatrical"
+                      class="checkbox__input"
+                      checked
+                    />
+                    <label for="theatrical" class="checkbox__label"
+                      >Theatrical (limited)</label
+                    >
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="theatricalWide"
+                      class="checkbox__input"
+                      checked
+                    />
+                    <label for="theatricalWide" class="checkbox__label"
+                      >Theatrical</label
+                    >
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="premiere"
+                      class="checkbox__input"
+                      checked
+                    />
+                    <label for="premiere" class="checkbox__label"
+                      >Premiere</label
+                    >
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="digital"
+                      class="checkbox__input"
+                      checked
+                    />
+                    <label for="digital" class="checkbox__label">Digital</label>
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="physical"
+                      class="checkbox__input"
+                      checked
+                    />
+                    <label for="physical" class="checkbox__label"
+                      >Physical</label
+                    >
+                  </div>
+                  <div class="checkbox">
+                    <input
+                      type="checkbox"
+                      id="tv"
+                      class="checkbox__input"
+                      checked
+                    />
+                    <label for="tv" class="checkbox__label">TV</label>
                   </div>
                 </div>
-              </div>
-              <div class="genres">
-                <div class="genres__title">Genres</div>
 
-                <div class="genres__list">
-                  <button class="genre-pill">Action</button>
-                  <button class="genre-pill">Adventure</button>
-                  <button class="genre-pill">Animation</button>
-                  <button class="genre-pill">Comedy</button>
-                  <button class="genre-pill">Crime</button>
-                  <button class="genre-pill">Documentary</button>
-                  <button class="genre-pill">Drama</button>
-                  <button class="genre-pill">Family</button>
-                  <button class="genre-pill">Fantasy</button>
-                  <button class="genre-pill">History</button>
-                  <button class="genre-pill">Horror</button>
-                  <button class="genre-pill">Music</button>
-                  <button class="genre-pill">Mystery</button>
-                  <button class="genre-pill">Romance</button>
-                  <button class="genre-pill">Science Fiction</button>
-                  <button class="genre-pill">TV Movie</button>
-                  <button class="genre-pill">Thriller</button>
-                  <button class="genre-pill">War</button>
-                  <button class="genre-pill">Western</button>
+                <!-- Date Range -->
+                <div class="date-range">
+                  <div class="date-range__field">
+                    <label for="dateFrom" class="date-range__label"
+                      >From:</label
+                    >
+                    <div class="date-range__input-wrapper">
+                      <input
+                        type="text"
+                        id="dateFrom"
+                        class="date-range__input"
+                        autocomplete="off"
+                      />
+                      <button
+                        type="button"
+                        class="date-range__button"
+                        id="dateFromButton"
+                      >
+                        <svg
+                          class="date-range__icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"
+                          />
+                          <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="date-range__field">
+                    <label for="dateTo" class="date-range__label">To:</label>
+                    <div class="date-range__input-wrapper">
+                      <input
+                        type="text"
+                        id="dateTo"
+                        class="date-range__input"
+                        autocomplete="off"
+                      />
+                      <button
+                        type="button"
+                        class="date-range__button"
+                        id="dateToButton"
+                      >
+                        <svg
+                          class="date-range__icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"
+                          />
+                          <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <!-- Language -->
-              <div class="picker picker--language">
+              </fieldset>
+
+              <!-- Genres -->
+              <fieldset class="filter-group">
+                <legend class="filter-group__title">Genres</legend>
+                <div class="genre-pills" id="genrePills">
+                  <button class="genre-pill" type="button">Action</button>
+                  <button class="genre-pill" type="button">Adventure</button>
+                  <button class="genre-pill" type="button">Animation</button>
+                  <button class="genre-pill" type="button">Comedy</button>
+                  <button class="genre-pill" type="button">Crime</button>
+                  <button class="genre-pill" type="button">Documentary</button>
+                  <button class="genre-pill" type="button">Drama</button>
+                  <button class="genre-pill" type="button">Family</button>
+                  <button class="genre-pill" type="button">Fantasy</button>
+                  <button class="genre-pill" type="button">History</button>
+                  <button class="genre-pill" type="button">Horror</button>
+                  <button class="genre-pill" type="button">Music</button>
+                  <button class="genre-pill" type="button">Mystery</button>
+                  <button class="genre-pill" type="button">Romance</button>
+                  <button class="genre-pill" type="button">
+                    Science Fiction
+                  </button>
+                  <button class="genre-pill" type="button">TV Movie</button>
+                  <button class="genre-pill" type="button">Thriller</button>
+                  <button class="genre-pill" type="button">War</button>
+                  <button class="genre-pill" type="button">Western</button>
+                </div>
+              </fieldset>
+
+              <!-- Language Picker -->
+              <div class="picker" id="languagePicker">
                 <button class="picker__button" type="button">
                   <span class="picker__value">Select language</span>
                   <svg class="picker__chevron" viewBox="0 0 24 24">
                     <path d="M6 9l6 6 6-6" />
                   </svg>
                 </button>
-
                 <div class="picker__panel">
                   <input
                     class="picker__search"
@@ -330,31 +448,33 @@
                   <ul class="picker__list"></ul>
                 </div>
               </div>
-              <!-- ranges inputs -->
-              <div class="sliders-container">
+
+              <!-- Range Sliders -->
+              <div class="sliders">
                 <!-- User Score -->
-                <div class="slider-group">
-                  <label class="slider-label">User Score</label>
-                  <div class="slider-container">
-                    <div class="slider-ticks">
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
+                <div class="slider">
+                  <label class="slider__label">User Score</label>
+                  <div class="slider__container">
+                    <div class="slider__ticks">
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
                     </div>
-                    <div class="slider-track">
-                      <div class="slider-range" id="userScoreRange"></div>
+                    <div class="slider__track">
+                      <div class="slider__range" id="userScoreRange"></div>
                     </div>
-                    <div class="range-inputs">
+                    <div class="slider__inputs">
                       <input
                         type="range"
+                        class="slider__input"
                         min="0"
                         max="10"
                         step="1"
@@ -363,6 +483,7 @@
                       />
                       <input
                         type="range"
+                        class="slider__input"
                         min="0"
                         max="10"
                         step="1"
@@ -371,35 +492,36 @@
                       />
                     </div>
                   </div>
-                  <div class="slider-labels">
-                    <span>0</span>
-                    <span>5</span>
-                    <span>10</span>
+                  <div class="slider__values">
+                    <span class="slider__value">0</span>
+                    <span class="slider__value">5</span>
+                    <span class="slider__value">10</span>
                   </div>
                 </div>
 
                 <!-- Minimum User Votes -->
-                <div class="slider-group">
-                  <label class="slider-label">Minimum User Votes</label>
-                  <div class="slider-container">
-                    <div class="slider-ticks">
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
+                <div class="slider">
+                  <label class="slider__label">Minimum User Votes</label>
+                  <div class="slider__container">
+                    <div class="slider__ticks">
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
                     </div>
-                    <div class="slider-track">
-                      <div class="slider-range" id="votesRange"></div>
+                    <div class="slider__track">
+                      <div class="slider__range" id="votesRange"></div>
                     </div>
                     <input
                       type="range"
+                      class="slider__input"
                       min="0"
                       max="500"
                       step="50"
@@ -407,53 +529,54 @@
                       id="votes"
                     />
                   </div>
-                  <div class="slider-labels">
-                    <span>0</span>
-                    <span>100</span>
-                    <span>200</span>
-                    <span>300</span>
-                    <span>400</span>
-                    <span>500</span>
+                  <div class="slider__values">
+                    <span class="slider__value">0</span>
+                    <span class="slider__value">100</span>
+                    <span class="slider__value">200</span>
+                    <span class="slider__value">300</span>
+                    <span class="slider__value">400</span>
+                    <span class="slider__value">500</span>
                   </div>
                 </div>
 
                 <!-- Runtime -->
-                <div class="slider-group">
-                  <label class="slider-label">Runtime</label>
-                  <div class="slider-container">
-                    <div class="slider-ticks">
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
-                      <div class="tick"></div>
+                <div class="slider">
+                  <label class="slider__label">Runtime</label>
+                  <div class="slider__container">
+                    <div class="slider__ticks">
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
+                      <div class="slider__tick"></div>
                     </div>
-                    <div class="slider-track">
-                      <div class="slider-range" id="runtimeRange"></div>
+                    <div class="slider__track">
+                      <div class="slider__range" id="runtimeRange"></div>
                     </div>
-                    <div class="range-inputs">
+                    <div class="slider__inputs">
                       <input
                         type="range"
+                        class="slider__input"
                         min="0"
                         max="360"
                         step="15"
@@ -462,6 +585,7 @@
                       />
                       <input
                         type="range"
+                        class="slider__input"
                         min="0"
                         max="360"
                         step="15"
@@ -470,48 +594,196 @@
                       />
                     </div>
                   </div>
-                  <div class="slider-labels">
-                    <span>0</span>
-                    <span>120</span>
-                    <span>240</span>
-                    <span>360</span>
+                  <div class="slider__values">
+                    <span class="slider__value">0</span>
+                    <span class="slider__value">120</span>
+                    <span class="slider__value">240</span>
+                    <span class="slider__value">360</span>
                   </div>
                 </div>
               </div>
-              <!-- search by keyword -->
-              <div class="keyword-container">
-                <label class="label">Keywords</label>
 
-                <div class="keyword-input-wrapper" id="keywordWrapper">
+              <!-- Keywords -->
+              <div class="keywords">
+                <label class="keywords__label">Keywords</label>
+                <div class="keywords__input-wrapper" id="keywordsWrapper">
                   <input
                     type="text"
-                    class="keyword-input"
-                    id="keywordInput"
+                    class="keywords__input"
+                    id="keywordsInput"
                     placeholder="Filter by keywords..."
                     autocomplete="off"
                   />
                 </div>
-
-                <div class="keyword-dropdown" id="keywordDropdown"></div>
+                <div class="keywords__dropdown" id="keywordsDropdown"></div>
               </div>
             </div>
-          </div>
-          <button type="button" class="filter-button" id="movie_filter">
+          </section>
+
+          <button
+            type="button"
+            class="button button--search button--moved"
+            id="searchButton"
+            disabled
+          >
             Search
           </button>
-        </section>
-        <section class="movies-wrapper">
-          <section class="movies"></section>
-          <div class="loadmore-button-wrapper">
-            <button type="button" class="loadmore-button" id="loadmoreButton">
+        </aside>
+
+        <!-- Movies Section -->
+        <section class="movies-section">
+          <div class="movies" id="moviesContainer"></div>
+          <div class="load-more">
+            <button
+              type="button"
+              class="button button--loadmore"
+              id="loadMoreButton"
+            >
               Load More
             </button>
           </div>
         </section>
       </div>
+      <button type="button" class="main__button" id="mainBtn" disabled>
+        Search
+      </button>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.js"></script>
+    <!-- Footer Block -->
+    <footer class="footer">
+      <div class="footer__container">
+        <!-- Logo and User Section -->
+        <div class="footer__branding">
+          <div class="footer__logo">
+            <svg class="footer__logo-svg" viewBox="0 0 190.24 81.52">
+              <defs>
+                <linearGradient
+                  id="logo-gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    style="stop-color: #90cea1; stop-opacity: 1"
+                  />
+                  <stop
+                    offset="100%"
+                    style="stop-color: #01b4e4; stop-opacity: 1"
+                  />
+                </linearGradient>
+              </defs>
+              <text
+                x="0"
+                y="35"
+                class="footer__logo-text footer__logo-text--the"
+              >
+                THE
+              </text>
+              <text
+                x="0"
+                y="60"
+                class="footer__logo-text footer__logo-text--movie"
+              >
+                MOVIE
+              </text>
+              <text
+                x="0"
+                y="80"
+                class="footer__logo-text footer__logo-text--db"
+              >
+                DB
+              </text>
+            </svg>
+          </div>
 
+          <button class="footer__user-button" type="button">
+            JOIN THE COMMUNITY
+          </button>
+        </div>
+
+        <!-- Navigation Columns -->
+        <nav class="footer__nav">
+          <!-- The Basics Column -->
+          <div class="footer__column">
+            <h3 class="footer__column-title">THE BASICS</h3>
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">About TMDB</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Contact Us</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">API Documentation</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">API for Business</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">System Status</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Get Involved Column -->
+          <div class="footer__column">
+            <h3 class="footer__column-title">GET INVOLVED</h3>
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">Contribution Bible</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Add New Movie</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Add New TV Show</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Community Column -->
+          <div class="footer__column">
+            <h3 class="footer__column-title">COMMUNITY</h3>
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">Guidelines</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Discussions</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Leaderboard</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Support Forums</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Legal Column -->
+          <div class="footer__column">
+            <h3 class="footer__column-title">LEGAL</h3>
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">Terms of Use</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">API Terms of Use</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Privacy Policy</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">DMCA Policy</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

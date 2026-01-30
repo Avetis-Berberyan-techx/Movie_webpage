@@ -1,110 +1,6 @@
-//--------Sort------------------
-
-//button of sort filter appearance
-const sortButton = document.getElementById("sort-apearance-button");
-//sort wrapper
-
-const sortWrapper = document.querySelector(".sort__footer");
-
-//sort selection block
-const sortSelect = document.querySelector(".sort__footer--select");
-const sortSelected = sortSelect.querySelector(".sort__footer--selected");
-const sortOptions = sortSelect.querySelector(".sort__footer--options");
-const sortItems = sortOptions.querySelectorAll("li");
-
-//-----------filters------------
-
-// Availabalities checkbox blocks
-
-//checkboxes
-const searchAll = document.getElementById("search_all");
-const stream = document.getElementById("stream");
-const free = document.getElementById("free");
-const ads = document.getElementById("ads");
-const rent = document.getElementById("rent");
-const buy = document.getElementById("buy");
-
-//disapearing checkboxes block
-const availabilitiesBox = document.querySelector(".availabalities__box");
-
-//-------------------------------------------
-const filtersWrapper = document.querySelector(".filters__footer");
-//button of sort filter appearance
-const filtersButton = document.getElementById("filters-apearance-button");
-
-sortSelected.addEventListener("click", () => {
-  sortOptions.style.display =
-    sortOptions.style.display === "block" ? "none" : "block";
-});
-
-sortItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    sortSelected.textContent = item.textContent;
-    sortOptions.style.display = "none";
-  });
-});
-
-// Close dropdown if clicked outside
-document.addEventListener("click", (e) => {
-  if (!sortSelect.contains(e.target)) {
-    sortOptions.style.display = "none";
-  }
-});
-
-// sort display
-sortButton.addEventListener("click", () => {
-  sortButton.classList.toggle("active");
-
-  if (sortWrapper.style.display === "block") {
-    sortWrapper.style.display = "none";
-  } else {
-    sortWrapper.style.display = "block";
-  }
-});
-// filter display
-filtersButton.addEventListener("click", () => {
-  filtersButton.classList.toggle("active");
-
-  if (filtersWrapper.style.display === "block") {
-    filtersWrapper.style.display = "none";
-  } else {
-    filtersWrapper.style.display = "block";
-  }
-});
-
-//Availabalities checkbox
-searchAll.addEventListener("change", () => {
-  if (searchAll.checked) {
-    availabilitiesBox.style.display = "none";
-  } else {
-    availabilitiesBox.style.display = "block";
-  }
-});
-
-const checkboxItemReleasesWrapper = document.querySelector(
-  ".checkbox-item-country-releases",
-);
-
-const checkboxReleaseTypesWrapper = document.querySelector(".release-types");
-
-//releases checkboxes
-const searchAllReleases = document.getElementById("searchAllReleases");
-const searchAllCountries = document.getElementById("searchAllCountries");
-const pickerCountry = document.querySelector(".picker--country");
-
-searchAllReleases.addEventListener("change", () => {
-  if (searchAllReleases.checked) {
-    checkboxItemReleasesWrapper.style.display = "none";
-    checkboxReleaseTypesWrapper.style.display = "none";
-    pickerCountry.style.display = "none";
-    searchAllCountries.checked = true;
-  } else {
-    checkboxItemReleasesWrapper.style.display = "flex";
-    checkboxReleaseTypesWrapper.style.display = "flex";
-  }
-});
-
-//country releases and language picker
+// ======================
+// Constants
+// ======================
 const LANGUAGES = {
   English: "en",
   Spanish: "es",
@@ -187,331 +83,6 @@ const COUNTRIES = {
   Georgia: "GE",
 };
 
-const countriesKeys = Object.keys(COUNTRIES);
-
-const languageKeys = Object.keys(LANGUAGES);
-
-const pickerCountrylist = document.querySelector(
-  ".picker--country .picker__list",
-);
-const pickerLanguagelist = document.querySelector(
-  ".picker--language .picker__list",
-);
-
-languageKeys.forEach((lang) => {
-  pickerLanguagelist.insertAdjacentHTML(
-    "beforeend",
-    `
-    <li class="picker__item">${lang}</li>
-    `,
-  );
-});
-
-countriesKeys.forEach((country) => {
-  pickerCountrylist.insertAdjacentHTML(
-    "beforeend",
-    `
-    <li class="picker__item">${country}</li>
-    `,
-  );
-});
-
-searchAllCountries.addEventListener("change", () => {
-  if (!searchAllCountries.checked) {
-    pickerCountry.style.display = "block";
-  } else {
-    pickerCountry.style.display = "none";
-  }
-});
-
-document.querySelectorAll(".picker").forEach((picker) => {
-  const button = picker.querySelector(".picker__button");
-  const search = picker.querySelector(".picker__search");
-  const items = picker.querySelectorAll(".picker__item");
-  const value = picker.querySelector(".picker__value");
-
-  button.addEventListener("click", () => {
-    picker.classList.toggle("open");
-    search.value = "";
-    filter("");
-    search.focus();
-  });
-
-  items.forEach((item) => {
-    item.addEventListener("click", () => {
-      value.textContent = item.textContent;
-      picker.classList.remove("open");
-    });
-  });
-
-  search.addEventListener("input", (e) => {
-    filter(e.target.value.toLowerCase());
-  });
-
-  function filter(q) {
-    items.forEach((item) => {
-      item.style.display = item.textContent.toLowerCase().includes(q)
-        ? "block"
-        : "none";
-    });
-  }
-});
-
-document.addEventListener("click", (e) => {
-  document.querySelectorAll(".picker").forEach((picker) => {
-    if (!picker.contains(e.target)) picker.classList.remove("open");
-  });
-});
-
-//----------------------------
-
-// date input
-
-const fromInput = document.getElementById("from");
-const toInput = document.getElementById("to");
-
-const fromBtn = document.getElementById("fromBtn");
-const toBtn = document.getElementById("toBtn");
-
-const toPicker = new AirDatepicker(toInput, {
-  dateFormat: "yyyy-MM-dd",
-  onSelect: () => {
-    toPicker.hide(); // ✅ force close
-  },
-});
-
-const fromPicker = new AirDatepicker(fromInput, {
-  dateFormat: "yyyy-MM-dd",
-  onSelect: ({ date }) => {
-    toPicker.update({ minDate: date });
-    fromPicker.hide(); // ✅ force close
-  },
-});
-
-fromBtn.addEventListener("click", () => fromPicker.show());
-toBtn.addEventListener("click", () => toPicker.show());
-
-//Genres
-
-const pills = document.querySelectorAll(".genre-pill");
-
-pills.forEach((pill) => {
-  pill.addEventListener("click", () => {
-    pill.classList.toggle("is-active");
-  });
-});
-
-// Example: get selected genres
-function getSelectedGenres() {
-  return [...document.querySelectorAll(".genre-pill.is-active")].map(
-    (pill) => pill.textContent,
-  );
-}
-
-//keyword
-const KEYWORDS = {
-  superhero: 9715,
-  "based on novel": 818,
-  sequel: 523,
-  prequel: 414,
-  remake: 968,
-  reboot: 9748,
-
-  friendship: 6054,
-  love: 9840,
-  revenge: 9748,
-  betrayal: 6054,
-
-  "time travel": 4379,
-  dystopia: 4565,
-  post_apocalyptic: 4458,
-  future: 9831,
-
-  war: 1956,
-  military: 4165,
-  politics: 6054,
-
-  biography: 9672,
-  true_story: 9672,
-
-  sports: 180547,
-  "martial arts": 779,
-  boxing: 9743,
-
-  zombie: 12377,
-  vampire: 3133,
-  alien: 9951,
-  monster: 947,
-
-  anime: 210024,
-  "based on manga": 206563,
-  "based on comic": 9715,
-
-  heist: 10349,
-  spy: 470,
-  detective: 703,
-};
-
-const availableKeywords = Object.keys(KEYWORDS);
-
-const keywordWrapper = document.getElementById("keywordWrapper");
-const keywordInput = document.getElementById("keywordInput");
-const keywordDropdown = document.getElementById("keywordDropdown");
-
-const selectedKeywords = new Set();
-
-// Focus input when clicking anywhere inside wrapper
-keywordWrapper.addEventListener("click", () => {
-  keywordInput.focus();
-});
-
-function renderPills() {
-  keywordWrapper.querySelectorAll(".keyword-pill").forEach((p) => p.remove());
-
-  selectedKeywords.forEach((kw) => {
-    const pill = document.createElement("div");
-    pill.className = "keyword-pill";
-    pill.innerHTML = `
-      ${kw}
-      <button class="remove-btn" data-keyword="${kw}">×</button>
-    `;
-    keywordWrapper.insertBefore(pill, keywordInput);
-  });
-}
-
-function showDropdown(value) {
-  keywordDropdown.innerHTML = "";
-
-  if (!value) {
-    keywordDropdown.style.display = "none";
-    return;
-  }
-
-  const filtered = availableKeywords.filter(
-    (k) => k.includes(value.toLowerCase()) && !selectedKeywords.has(k),
-  );
-
-  filtered.forEach((kw) => {
-    const item = document.createElement("div");
-    item.className = "keyword-item";
-    item.textContent = kw;
-
-    item.addEventListener("click", () => {
-      selectedKeywords.add(kw);
-      renderPills();
-      keywordInput.value = "";
-      keywordDropdown.style.display = "none";
-      keywordInput.focus();
-    });
-
-    keywordDropdown.appendChild(item);
-  });
-
-  keywordDropdown.style.display = filtered.length ? "block" : "none";
-}
-
-keywordInput.addEventListener("input", () => {
-  showDropdown(keywordInput.value.trim());
-});
-
-keywordInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    const val = keywordInput.value.trim();
-    if (val && !selectedKeywords.has(val)) {
-      selectedKeywords.add(val);
-      renderPills();
-    }
-    keywordInput.value = "";
-    keywordDropdown.style.display = "none";
-  }
-});
-
-keywordWrapper.addEventListener("click", (e) => {
-  if (e.target.classList.contains("remove-btn")) {
-    selectedKeywords.delete(e.target.dataset.keyword);
-    renderPills();
-    keywordInput.focus();
-  }
-});
-
-document.addEventListener("click", (e) => {
-  if (
-    !keywordWrapper.contains(e.target) &&
-    !keywordDropdown.contains(e.target)
-  ) {
-    keywordDropdown.style.display = "none";
-  }
-});
-
-// range fill in
-const userScoreMin = document.getElementById("userScoreMin");
-const userScoreMax = document.getElementById("userScoreMax");
-const userScoreRange = document.getElementById("userScoreRange");
-
-function updateUserScore() {
-  let min = parseFloat(userScoreMin.value);
-  let max = parseFloat(userScoreMax.value);
-
-  if (min > max) {
-    [min, max] = [max, min];
-    userScoreMin.value = min;
-    userScoreMax.value = max;
-  }
-
-  const percent1 = (min / 10) * 100;
-  const percent2 = (max / 10) * 100;
-
-  userScoreRange.style.left = percent1 + "%";
-  userScoreRange.style.width = percent2 - percent1 + "%";
-}
-
-userScoreMin.addEventListener("input", updateUserScore);
-userScoreMax.addEventListener("input", updateUserScore);
-updateUserScore();
-
-// Minimum User Votes (single range)
-const votes = document.getElementById("votes");
-const votesRange = document.getElementById("votesRange");
-
-function updateVotes() {
-  const percent = (votes.value / 500) * 100;
-  votesRange.style.left = "0%";
-  votesRange.style.width = percent + "%";
-}
-
-votes.addEventListener("input", updateVotes);
-updateVotes();
-
-// Runtime (dual range)
-const runtimeMin = document.getElementById("runtimeMin");
-const runtimeMax = document.getElementById("runtimeMax");
-const runtimeRange = document.getElementById("runtimeRange");
-
-function updateRuntime() {
-  let min = parseInt(runtimeMin.value);
-  let max = parseInt(runtimeMax.value);
-
-  if (min > max) {
-    [min, max] = [max, min];
-    runtimeMin.value = min;
-    runtimeMax.value = max;
-  }
-
-  const percent1 = (min / 360) * 100;
-  const percent2 = (max / 360) * 100;
-
-  runtimeRange.style.left = percent1 + "%";
-  runtimeRange.style.width = percent2 - percent1 + "%";
-}
-
-runtimeMin.addEventListener("input", updateRuntime);
-runtimeMax.addEventListener("input", updateRuntime);
-updateRuntime();
-
-//fetching
-
-// Genre mapping
 const GENRES = {
   Action: 28,
   Adventure: 12,
@@ -534,7 +105,6 @@ const GENRES = {
   Western: 37,
 };
 
-// Release type mapping
 const RELEASE_TYPES = {
   Premiere: 1,
   "Theatrical (limited)": 2,
@@ -544,95 +114,42 @@ const RELEASE_TYPES = {
   TV: 6,
 };
 
-const getFilterURL = (filters) => {
-  let url = "";
-  for (let [key, value] of Object.entries(filters)) {
-    if (Array.isArray(value)) {
-      // Join array values with commas
-      url += `${key}=${value.map((v) => encodeURIComponent(v)).join("|")}&`;
-    } else {
-      url += `${key}=${encodeURIComponent(value)}&`;
-    }
-  }
-  // Remove trailing '&' if it exists
-  if (url.endsWith("&")) url = url.slice(0, -1);
-  return url;
+const KEYWORDS = {
+  superhero: 9715,
+  "based on novel": 818,
+  sequel: 523,
+  prequel: 414,
+  remake: 968,
+  reboot: 9748,
+  friendship: 6054,
+  love: 9840,
+  revenge: 9748,
+  betrayal: 6054,
+  "time travel": 4379,
+  dystopia: 4565,
+  post_apocalyptic: 4458,
+  future: 9831,
+  war: 1956,
+  military: 4165,
+  politics: 6054,
+  biography: 9672,
+  true_story: 9672,
+  sports: 180547,
+  "martial arts": 779,
+  boxing: 9743,
+  zombie: 12377,
+  vampire: 3133,
+  alien: 9951,
+  monster: 947,
+  anime: 210024,
+  "based on manga": 206563,
+  "based on comic": 9715,
+  heist: 10349,
+  spy: 470,
+  detective: 703,
 };
 
-async function discoverMovies(params = {}) {
-  const apiKey = "2de47dd8b744f69009564aec2ad06d07"; // ← Replace with your own TMDB API key
-  const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&`;
-
-  // Build query string
-  const filtersURL = getFilterURL(params);
-
-  const url = `${baseUrl}${filtersURL}`;
-  console.log(url);
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`TMDB error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("Discover Movies fetch failed:", err);
-    throw err;
-  }
-}
-
-const moviesContainer = document.querySelector(".movies");
-
-function renderMovies(data, reset = true) {
-  if (reset) moviesContainer.innerHTML = "";
-
-  data.forEach((obj) => {
-    const imageUrl = obj.poster_path
-      ? `https://image.tmdb.org/t/p/w780${obj.poster_path}`
-      : obj.backdrop_path
-        ? `https://image.tmdb.org/t/p/w1280${obj.backdrop_path}`
-        : `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg`;
-    let degree = (Math.floor(obj.vote_average * 10) * 360) / 100;
-    moviesContainer.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="movie-card">
-            <div class="movie-card__image">
-              <img
-                class="movie-card__img"
-                src="${imageUrl}
-"
-                alt="Movie Image"
-              />
-            </div>
-
-            <div class="movie-card__rating" style="background:conic-gradient(#36a2eb 0deg ${degree}deg, #fff ${degree}deg 360deg);">
-              <div class="movie-card__rating-circle">${Math.floor(obj.vote_average * 10)}%</div>
-            </div>
-
-            <div class="movie-card__data">
-              <div class="movie-card__title">
-                <h3 class="movie-card__title-text">${obj.title}</h3>
-              </div>
-
-              <div class="movie-card__date">
-                <p class="movie-card__date-text">${obj.release_date}</p>
-              </div>
-
-              <div class="movie-card__description">
-                <p class="movie-card__description-text">
-                  ${obj.overview.slice(0, 100)}...
-                </p>
-              </div>
-            </div>
-          </div>
-      `,
-    );
-  });
-}
-const SORT_TEXTS = {
+const SORT_MAPPING = {
   "Popularity Ascending": "popularity.asc",
   "Popularity Descending": "popularity.desc",
   "Rating Ascending": "vote_average.asc",
@@ -643,119 +160,627 @@ const SORT_TEXTS = {
   "Z-A": "title.desc",
 };
 
-const movieFilterButton = document.getElementById("movie_filter");
-const sortBy = document.querySelector(".sort");
-const availabalities = [stream, free, ads, rent, buy];
-const releaseTypes = document.querySelectorAll(".release-types .checkbox-item");
-const genresList = document.querySelectorAll(".genres__list .genre-pill");
-const pickerLanguageInput = document.querySelector(
-  ".picker--language .picker__button .picker__value",
-);
-const loadmoreBtn = document.getElementById("loadmoreButton");
+const API_KEY = "2de47dd8b744f69009564aec2ad06d07";
 
+// ======================
+// DOM Elements
+// ======================
+// Sort elements
+const sortToggle = document.getElementById("sortToggleButton");
+const sortBody = document.getElementById("sortBody");
+const sortSelect = document.getElementById("sortSelect");
+const sortSelectButton = sortSelect.querySelector(".select__button");
+const sortSelectValue = sortSelect.querySelector(".select__value");
+const sortDropdown = sortSelect.querySelector(".select__dropdown");
+const sortOptions = sortSelect.querySelectorAll(".select__option");
+
+// Filter elements
+const filtersToggle = document.getElementById("filtersToggleButton");
+const filtersBody = document.getElementById("filtersBody");
+
+// Availability checkboxes
+const searchAllCheckbox = document.getElementById("searchAll");
+const availabilitiesContent = document.getElementById("availabilitiesContent");
+const streamCheckbox = document.getElementById("stream");
+const freeCheckbox = document.getElementById("free");
+const adsCheckbox = document.getElementById("ads");
+const rentCheckbox = document.getElementById("rent");
+const buyCheckbox = document.getElementById("buy");
+
+// Release checkboxes
+const searchAllReleasesCheckbox = document.getElementById("searchAllReleases");
+const searchAllCountriesCheckbox =
+  document.getElementById("searchAllCountries");
+const searchCountriesCheckbox = document.getElementById(
+  "searchCountriesCheckbox",
+);
+const releaseTypesContent = document.getElementById("releaseTypesContent");
+const countryPicker = document.getElementById("countryPicker");
+const languagePicker = document.getElementById("languagePicker");
+
+// Date inputs
+const dateFromInput = document.getElementById("dateFrom");
+const dateToInput = document.getElementById("dateTo");
+const dateFromButton = document.getElementById("dateFromButton");
+const dateToButton = document.getElementById("dateToButton");
+
+// Genre pills
+const genrePills = document.querySelectorAll(".genre-pill");
+
+// Range sliders
+const userScoreMin = document.getElementById("userScoreMin");
+const userScoreMax = document.getElementById("userScoreMax");
+const userScoreRange = document.getElementById("userScoreRange");
+const votes = document.getElementById("votes");
+const votesRange = document.getElementById("votesRange");
+const runtimeMin = document.getElementById("runtimeMin");
+const runtimeMax = document.getElementById("runtimeMax");
+const runtimeRange = document.getElementById("runtimeRange");
+
+// Keywords
+const keywordsWrapper = document.getElementById("keywordsWrapper");
+const keywordsInput = document.getElementById("keywordsInput");
+const keywordsDropdown = document.getElementById("keywordsDropdown");
+const selectedKeywords = new Set();
+
+// Buttons
+const searchButton = document.getElementById("searchButton");
+const loadMoreButton = document.getElementById("loadMoreButton");
+const mainButton = document.getElementById("mainBtn");
+// Movies container
+const moviesContainer = document.getElementById("moviesContainer");
+
+// Filter state
 const filters = {
-  sort_by: SORT_TEXTS[sortSelected.innerHTML], //
+  sort_by: SORT_MAPPING["Popularity Descending"],
   include_adult: false,
   include_video: false,
   page: 1,
 };
 
-discoverMovies()
-  .then((data) => {
-    console.log(data.results);
-    renderMovies(data.results);
-  })
-  .catch(console.error);
+// ======================
+// Sort Functionality
+// ======================
+sortToggle.addEventListener("click", () => {
+  sortToggle.classList.toggle("sort__toggle--active");
+  sortBody.classList.toggle("sort__body--visible");
+});
 
-movieFilterButton.addEventListener("click", () => {
-  filters["page"] = 1;
-  filters["sort_by"] = SORT_TEXTS[sortSelected.innerHTML];
+sortSelectButton.addEventListener("click", () => {
+  sortDropdown.classList.toggle("select__dropdown--visible");
+});
 
-  // availabalities
-  if (!searchAll.checked) {
-    let tempchecked = [];
-    availabalities.forEach((availabality) => {
-      if (availabality.checked) {
-        tempchecked.push(availabality.value);
-      }
-    });
-    filters["with_watch_monetization_types"] = tempchecked;
-  } else {
-    delete filters["with_watch_monetization_types"];
+sortOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    sortSelectValue.textContent = option.textContent;
+    sortDropdown.classList.remove("select__dropdown--visible");
+  });
+});
+
+document.addEventListener("click", (e) => {
+  if (!sortSelect.contains(e.target)) {
+    sortDropdown.classList.remove("select__dropdown--visible");
   }
-  //releases
-  if (!searchAllReleases.checked) {
-    let tempchecked = [];
-    releaseTypes.forEach((type) => {
-      if (type.getElementsByTagName("input")[0].checked) {
-        let releaseId =
-          RELEASE_TYPES[type.getElementsByTagName("label")[0].innerHTML];
-        tempchecked.push(releaseId);
+});
+
+//Search button observer
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (!entry.isIntersecting) {
+      mainButton.style.display = "block";
+    } else {
+      mainButton.style.display = "none";
+    }
+  },
+  {
+    threshold: 0,
+  },
+);
+
+// making available search buttons
+sortBody.addEventListener("click", (e) => {
+  if (e.target.closest("button")) {
+    searchButton.disabled = false;
+    mainButton.disabled = false;
+    observer.observe(searchButton);
+  }
+});
+
+filtersBody.addEventListener("click", (e) => {
+  const el = e.target;
+
+  if (el.matches("button") || el.matches("input") || el.matches("select")) {
+    searchButton.disabled = false;
+    mainButton.disabled = false;
+    observer.observe(searchButton);
+  }
+});
+
+// ======================
+// Filters Functionality
+// ======================
+filtersToggle.addEventListener("click", () => {
+  filtersToggle.classList.toggle("filters__toggle--active");
+  filtersBody.classList.toggle("filters__body--visible");
+});
+
+// Availability toggles
+searchAllCheckbox.addEventListener("change", () => {
+  if (searchAllCheckbox.checked) {
+    availabilitiesContent.classList.remove("filter-group__content--visible");
+  } else {
+    availabilitiesContent.classList.add("filter-group__content--visible");
+  }
+});
+
+// Release toggles
+searchAllReleasesCheckbox.addEventListener("change", () => {
+  if (searchAllReleasesCheckbox.checked) {
+    searchCountriesCheckbox.classList.remove("checkbox--nested-visible");
+    releaseTypesContent.classList.remove("filter-group__content--visible");
+    countryPicker.classList.add("picker--hidden");
+    searchAllCountriesCheckbox.checked = true;
+  } else {
+    searchCountriesCheckbox.classList.add("checkbox--nested-visible");
+    releaseTypesContent.classList.add("filter-group__content--visible");
+  }
+});
+
+searchAllCountriesCheckbox.addEventListener("change", () => {
+  if (!searchAllCountriesCheckbox.checked) {
+    countryPicker.classList.remove("picker--hidden");
+  } else {
+    countryPicker.classList.add("picker--hidden");
+  }
+});
+
+// ======================
+// Picker Functionality
+// ======================
+function initializePicker(pickerElement, items) {
+  const button = pickerElement.querySelector(".picker__button");
+  const search = pickerElement.querySelector(".picker__search");
+  const list = pickerElement.querySelector(".picker__list");
+  const value = pickerElement.querySelector(".picker__value");
+
+  // Populate list
+  Object.keys(items).forEach((item) => {
+    const li = document.createElement("li");
+    li.className = "picker__item";
+    li.textContent = item;
+    list.appendChild(li);
+  });
+
+  const listItems = list.querySelectorAll(".picker__item");
+
+  button.addEventListener("click", () => {
+    pickerElement.classList.toggle("picker--open");
+    search.value = "";
+    filterItems("");
+    if (pickerElement.classList.contains("picker--open")) {
+      search.focus();
+    }
+  });
+
+  listItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      value.textContent = item.textContent;
+      pickerElement.classList.remove("picker--open");
+    });
+  });
+
+  search.addEventListener("input", (e) => {
+    filterItems(e.target.value.toLowerCase());
+  });
+
+  function filterItems(query) {
+    listItems.forEach((item) => {
+      item.style.display = item.textContent.toLowerCase().includes(query)
+        ? "block"
+        : "none";
+    });
+  }
+}
+
+// Close pickers when clicking outside
+document.addEventListener("click", (e) => {
+  document.querySelectorAll(".picker").forEach((picker) => {
+    if (!picker.contains(e.target)) {
+      picker.classList.remove("picker--open");
+    }
+  });
+});
+
+// Initialize pickers
+initializePicker(countryPicker, COUNTRIES);
+initializePicker(languagePicker, LANGUAGES);
+
+// ======================
+// Date Picker Functionality
+// ======================
+const toPicker = new AirDatepicker(dateToInput, {
+  dateFormat: "yyyy-MM-dd",
+  onSelect: () => {
+    toPicker.hide();
+  },
+});
+
+const fromPicker = new AirDatepicker(dateFromInput, {
+  dateFormat: "yyyy-MM-dd",
+  onSelect: ({ date }) => {
+    toPicker.update({ minDate: date });
+    fromPicker.hide();
+  },
+});
+
+dateFromButton.addEventListener("click", () => fromPicker.show());
+dateToButton.addEventListener("click", () => toPicker.show());
+
+// ======================
+// Genre Pills Functionality
+// ======================
+genrePills.forEach((pill) => {
+  pill.addEventListener("click", () => {
+    pill.classList.toggle("genre-pill--active");
+  });
+});
+
+// ======================
+// Range Sliders Functionality
+// ======================
+function updateUserScore() {
+  let min = parseFloat(userScoreMin.value);
+  let max = parseFloat(userScoreMax.value);
+
+  if (min > max) {
+    [min, max] = [max, min];
+    userScoreMin.value = min;
+    userScoreMax.value = max;
+  }
+
+  const percent1 = (min / 10) * 100;
+  const percent2 = (max / 10) * 100;
+
+  userScoreRange.style.left = percent1 + "%";
+  userScoreRange.style.width = percent2 - percent1 + "%";
+}
+
+userScoreMin.addEventListener("input", updateUserScore);
+userScoreMax.addEventListener("input", updateUserScore);
+updateUserScore();
+
+function updateVotes() {
+  const percent = (votes.value / 500) * 100;
+  votesRange.style.left = "0%";
+  votesRange.style.width = percent + "%";
+}
+
+votes.addEventListener("input", updateVotes);
+updateVotes();
+
+function updateRuntime() {
+  let min = parseInt(runtimeMin.value);
+  let max = parseInt(runtimeMax.value);
+
+  if (min > max) {
+    [min, max] = [max, min];
+    runtimeMin.value = min;
+    runtimeMax.value = max;
+  }
+
+  const percent1 = (min / 360) * 100;
+  const percent2 = (max / 360) * 100;
+
+  runtimeRange.style.left = percent1 + "%";
+  runtimeRange.style.width = percent2 - percent1 + "%";
+}
+
+runtimeMin.addEventListener("input", updateRuntime);
+runtimeMax.addEventListener("input", updateRuntime);
+updateRuntime();
+
+// ======================
+// Keywords Functionality
+// ======================
+const availableKeywords = Object.keys(KEYWORDS);
+
+keywordsWrapper.addEventListener("click", () => {
+  keywordsInput.focus();
+});
+
+function renderKeywordPills() {
+  keywordsWrapper
+    .querySelectorAll(".keywords__pill")
+    .forEach((p) => p.remove());
+
+  selectedKeywords.forEach((keyword) => {
+    const pill = document.createElement("div");
+    pill.className = "keywords__pill";
+    pill.innerHTML = `
+      ${keyword}
+      <button class="keywords__remove" data-keyword="${keyword}">×</button>
+    `;
+    keywordsWrapper.insertBefore(pill, keywordsInput);
+  });
+}
+
+function showKeywordDropdown(value) {
+  keywordsDropdown.innerHTML = "";
+
+  if (!value) {
+    keywordsDropdown.classList.remove("keywords__dropdown--visible");
+    return;
+  }
+
+  const filtered = availableKeywords.filter(
+    (k) =>
+      k.toLowerCase().includes(value.toLowerCase()) && !selectedKeywords.has(k),
+  );
+
+  filtered.forEach((keyword) => {
+    const item = document.createElement("div");
+    item.className = "keywords__dropdown-item";
+    item.textContent = keyword;
+
+    item.addEventListener("click", () => {
+      selectedKeywords.add(keyword);
+      renderKeywordPills();
+      keywordsInput.value = "";
+      keywordsDropdown.classList.remove("keywords__dropdown--visible");
+      keywordsInput.focus();
+    });
+
+    keywordsDropdown.appendChild(item);
+  });
+
+  if (filtered.length) {
+    keywordsDropdown.classList.add("keywords__dropdown--visible");
+  } else {
+    keywordsDropdown.classList.remove("keywords__dropdown--visible");
+  }
+}
+
+keywordsInput.addEventListener("input", () => {
+  showKeywordDropdown(keywordsInput.value.trim());
+});
+
+keywordsInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const val = keywordsInput.value.trim();
+    if (val && !selectedKeywords.has(val)) {
+      selectedKeywords.add(val);
+      renderKeywordPills();
+    }
+    keywordsInput.value = "";
+    keywordsDropdown.classList.remove("keywords__dropdown--visible");
+  }
+});
+
+keywordsWrapper.addEventListener("click", (e) => {
+  if (e.target.classList.contains("keywords__remove")) {
+    selectedKeywords.delete(e.target.dataset.keyword);
+    renderKeywordPills();
+    keywordsInput.focus();
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (
+    !keywordsWrapper.contains(e.target) &&
+    !keywordsDropdown.contains(e.target)
+  ) {
+    keywordsDropdown.classList.remove("keywords__dropdown--visible");
+  }
+});
+
+// ======================
+// API Functions
+// ======================
+function getFilterURL(filterParams) {
+  let url = "";
+  for (let [key, value] of Object.entries(filterParams)) {
+    if (Array.isArray(value)) {
+      url += `${key}=${value.map((v) => encodeURIComponent(v)).join("|")}&`;
+    } else {
+      url += `${key}=${encodeURIComponent(value)}&`;
+    }
+  }
+  if (url.endsWith("&")) url = url.slice(0, -1);
+  return url;
+}
+
+async function discoverMovies(params = {}) {
+  const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&`;
+  const filtersURL = getFilterURL(params);
+  const url = `${baseUrl}${filtersURL}`;
+
+  console.log(url);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`TMDB error: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error("Discover Movies fetch failed:", err);
+    throw err;
+  }
+}
+
+function getColorFromPercent(percent) {
+  percent = Math.max(0, Math.min(100, percent));
+
+  let r, g, b;
+
+  if (percent < 50) {
+    // red -> yellow
+    r = 255;
+    g = Math.round(255 * (percent / 50));
+    b = 0;
+  } else {
+    // yellow -> green
+    r = Math.round(255 * (1 - (percent - 50) / 50));
+    g = 255;
+    b = 0;
+  }
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+function renderMovies(data, reset = true) {
+  if (reset) moviesContainer.innerHTML = "";
+
+  data.forEach((movie) => {
+    const imageUrl = movie.poster_path
+      ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
+      : movie.backdrop_path
+        ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}`
+        : `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg`;
+
+    const degree = (Math.floor(movie.vote_average * 10) * 360) / 100;
+
+    const movieCard = document.createElement("div");
+    movieCard.className = "movie-card";
+    movieCard.innerHTML = `
+      <div class="movie-card__image-wrapper">
+        <img class="movie-card__image" src="${imageUrl}" alt="${movie.title}" />
+      </div>
+      <div class="movie-card__rating-wrapper">
+        <div class="movie-card__rating" style="background:conic-gradient(
+    ${getColorFromPercent(Math.floor(movie.vote_average * 10))} 0deg ${degree}deg ,
+    black 0);">
+        <div class="movie-card__rating-value">${Math.floor(movie.vote_average * 10)}%</div>
+      </div>
+      </div>
+      <div class="movie-card__content">
+        <h3 class="movie-card__title">${movie.title}</h3>
+        <p class="movie-card__date">${movie.release_date || "N/A"}</p>
+        <p class="movie-card__description">${movie.overview ? movie.overview.slice(0, 100) + "..." : ""}</p>
+      </div>
+    `;
+
+    moviesContainer.appendChild(movieCard);
+  });
+}
+
+// ======================
+// Search & Filter Functionality
+// ======================
+
+searchButton.addEventListener("click", () => {
+  filters.page = 1;
+  console.log(sortSelectValue.innerHTML);
+  filters.sort_by = SORT_MAPPING[sortSelectValue.innerHTML.trim()];
+
+  // Availabilities
+  if (!searchAllCheckbox.checked) {
+    const checkedAvailabilities = [];
+    [
+      streamCheckbox,
+      freeCheckbox,
+      adsCheckbox,
+      rentCheckbox,
+      buyCheckbox,
+    ].forEach((checkbox) => {
+      if (checkbox.checked) {
+        // console.log(checkbox.value);
+        checkedAvailabilities.push(checkbox.value);
       }
     });
-    filters["with_release_type"] = tempchecked;
+    filters.with_watch_monetization_types = checkedAvailabilities;
+  } else {
+    delete filters.with_watch_monetization_types;
+  }
 
-    if (!searchAllCountries.checked) {
-      const countryValue = pickerCountry.querySelector(
-        ".picker__button .picker__value",
-      ).innerHTML;
+  // Releases
+  if (!searchAllReleasesCheckbox.checked) {
+    const releaseTypeCheckboxes =
+      releaseTypesContent.querySelectorAll(".checkbox__input");
+    const checkedReleaseTypes = [];
 
-      filters["with_origin_country"] = COUNTRIES[countryValue];
+    releaseTypeCheckboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        const label = checkbox.parentElement.querySelector(".checkbox__label");
+        const releaseId = RELEASE_TYPES[label.textContent];
+        if (releaseId) {
+          checkedReleaseTypes.push(releaseId);
+        }
+      }
+    });
+
+    filters.with_release_type = checkedReleaseTypes;
+
+    if (!searchAllCountriesCheckbox.checked) {
+      const countryValue =
+        countryPicker.querySelector(".picker__value").textContent;
+      if (countryValue !== "Select country") {
+        filters.with_origin_country = COUNTRIES[countryValue];
+      }
     } else {
-      delete filters["with_origin_country"];
+      delete filters.with_origin_country;
     }
   } else {
-    delete filters["with_release_type"];
-    delete filters["with_origin_country"];
+    delete filters.with_release_type;
+    delete filters.with_origin_country;
   }
-  //release Date
-  if (fromInput.value !== "") {
-    filters["primary_release_date.gte"] = fromInput.value;
+
+  // Release dates
+  if (dateFromInput.value !== "") {
+    filters["primary_release_date.gte"] = dateFromInput.value;
   } else {
     delete filters["primary_release_date.gte"];
   }
-  if (toInput.value !== "") {
-    filters["primary_release_date.lte"] = toInput.value;
+
+  if (dateToInput.value !== "") {
+    filters["primary_release_date.lte"] = dateToInput.value;
   } else {
     delete filters["primary_release_date.lte"];
   }
 
-  //Genres
-  let tempchecked = [];
-  genresList.forEach((genre) => {
-    if (genre.classList.contains("is-active")) {
-      tempchecked.push(GENRES[genre.innerHTML]);
+  // Genres
+  const selectedGenres = [];
+  genrePills.forEach((pill) => {
+    if (pill.classList.contains("genre-pill--active")) {
+      selectedGenres.push(GENRES[pill.textContent]);
     }
   });
-  if (tempchecked.length) {
-    filters["with_genres"] = tempchecked;
+
+  if (selectedGenres.length) {
+    filters.with_genres = selectedGenres;
   } else {
-    delete filters["with_genres"];
+    delete filters.with_genres;
   }
 
-  //rating,min vote count, runtime ranges
-  filters["vote_average_gte"] = userScoreMin.value;
-  filters["vote_average_lte"] = userScoreMax.value;
-  filters["vote_count_gte"] = votes.value;
-  filters["with_runtime_gte"] = runtimeMin.value;
-  filters["with_runtime_lte"] = runtimeMax.value;
-  let keywords = [...selectedKeywords];
-  keywords = keywords.map((keyword) => {
-    return KEYWORDS[keyword];
-  });
+  // Rating, votes, runtime
+  filters["vote_average.gte"] = userScoreMin.value;
+  filters["vote_average.lte"] = userScoreMax.value;
+  filters["vote_count.gte"] = votes.value;
+  filters["with_runtime.gte"] = runtimeMin.value;
+  filters["with_runtime.lte"] = runtimeMax.value;
 
-  if (keywords.length) {
-    filters["with_keywords"] = keywords;
+  // Keywords
+  const keywordIds = [...selectedKeywords]
+    .map((keyword) => KEYWORDS[keyword])
+    .filter(Boolean);
+
+  if (keywordIds.length) {
+    filters.with_keywords = keywordIds;
   } else {
-    delete filters["with_keywords"];
+    delete filters.with_keywords;
   }
 
-  if (pickerLanguageInput.innerHTML !== "Select language") {
-    filters["with_original_language"] =
-      LANGUAGES[pickerLanguageInput.innerHTML];
+  // Language
+  const languageValue =
+    languagePicker.querySelector(".picker__value").textContent;
+  if (languageValue !== "Select language") {
+    filters.with_original_language = LANGUAGES[languageValue];
   } else {
-    delete filters["with_original_language"];
+    delete filters.with_original_language;
   }
+
   discoverMovies(filters)
     .then((data) => {
       console.log(data.results);
@@ -764,12 +789,26 @@ movieFilterButton.addEventListener("click", () => {
     .catch(console.error);
 });
 
-loadmoreBtn.addEventListener("click", () => {
+mainButton.addEventListener("click", () => {
+  searchButton.click();
+});
+
+loadMoreButton.addEventListener("click", () => {
   filters.page += 1;
   discoverMovies(filters)
     .then((data) => {
       console.log(data.results);
-      renderMovies(data.results, (reset = false));
+      renderMovies(data.results, false);
     })
     .catch(console.error);
 });
+
+// ======================
+// Initial Load
+// ======================
+discoverMovies(filters)
+  .then((data) => {
+    console.log(data.results);
+    renderMovies(data.results);
+  })
+  .catch(console.error);
