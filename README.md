@@ -1,4 +1,4 @@
-# Movie Discovery App - Modular Structure
+# Movie Webpage
 
 ## File Structure
 
