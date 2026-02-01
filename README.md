@@ -75,16 +75,3 @@ In your HTML file, include the main script as a module:
 ```
 
 **Note:** Make sure your HTML file includes the AirDatepicker library before loading the main script, as it's used by the date picker functionality.
-
-## Dependencies
-
-- AirDatepicker (for date selection)
-- TMDB API (The Movie Database)
-
-## Benefits of This Structure
-
-1. **Separation of Concerns** - Each file has a specific responsibility
-2. **Maintainability** - Easy to locate and update specific functionality
-3. **Reusability** - Functions can be imported and reused across different parts
-4. **Testability** - Individual modules can be tested independently
-5. **Scalability** - Easy to add new features without cluttering existing code
