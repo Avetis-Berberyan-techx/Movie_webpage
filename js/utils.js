@@ -1,10 +1,4 @@
-// ======================
-// Utility Functions
-// ======================
-
-/**
- * Build URL query string from filter parameters
- */
+//Build URL query string from filter parameters
 export function getFilterURL(filterParams) {
   let url = "";
   for (let [key, value] of Object.entries(filterParams)) {
@@ -18,9 +12,7 @@ export function getFilterURL(filterParams) {
   return url;
 }
 
-/**
- * Get color based on percentage (red -> yellow -> green)
- */
+//Get color based on percentage (red -> yellow -> green)
 export function getColorFromPercent(percent) {
   percent = Math.max(0, Math.min(100, percent));
 

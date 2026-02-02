@@ -1,6 +1,4 @@
-// ======================
 // Filter State & Search
-// ======================
 
 import {
   SORT_MAPPING,

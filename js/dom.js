@@ -1,6 +1,4 @@
-// ======================
 // DOM Elements
-// ======================
 
 // Sort elements
 export const sortToggle = document.getElementById("sortToggleButton");

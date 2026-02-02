@@ -1,7 +1,3 @@
-// ======================
-// Main Entry Point
-// ======================
-
 import { COUNTRIES, LANGUAGES } from "./constants.js";
 import {
   initializeSortUI,
@@ -19,9 +15,7 @@ import { initializeSearchHandlers, filters } from "./filters.js";
 import { discoverMovies } from "./api.js";
 import { renderMovies } from "./render.js";
 
-// ======================
 // Initialize Application
-// ======================
 
 function initializeApp() {
   // Initialize UI components
@@ -54,9 +48,4 @@ function initializeApp() {
     .catch(console.error);
 }
 
-// Start the application when DOM is ready
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeApp);
-} else {
-  initializeApp();
-}
+initializeApp();

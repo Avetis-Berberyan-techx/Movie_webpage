@@ -1,6 +1,4 @@
-// ======================
 // Constants
-// ======================
 
 export const LANGUAGES = {
   English: "en",

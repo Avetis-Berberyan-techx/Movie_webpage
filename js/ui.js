@@ -41,9 +41,7 @@ import {
 } from "./dom.js";
 import { KEYWORDS } from "./constants.js";
 
-// ======================
 // Sort Functionality
-// ======================
 
 export function initializeSortUI() {
   sortToggle.addEventListener("click", () => {
@@ -69,9 +67,7 @@ export function initializeSortUI() {
   });
 }
 
-// ======================
 // Filters Toggle
-// ======================
 
 export function initializeFiltersToggle() {
   filtersToggle.addEventListener("click", () => {
@@ -110,9 +106,7 @@ export function initializeFiltersToggle() {
   });
 }
 
-// ======================
 // Picker Functionality
-// ======================
 
 export function initializePicker(pickerElement, items) {
   const button = pickerElement.querySelector(".picker__button");
@@ -170,9 +164,7 @@ export function setupPickerCloseBehavior() {
   });
 }
 
-// ======================
 // Date Picker Functionality
-// ======================
 
 export function initializeDatePickers() {
   const toPicker = new AirDatepicker(dateToInput, {
@@ -194,9 +186,7 @@ export function initializeDatePickers() {
   dateToButton.addEventListener("click", () => toPicker.show());
 }
 
-// ======================
 // Genre Pills Functionality
-// ======================
 
 export function initializeGenrePills() {
   genrePills.forEach((pill) => {
@@ -206,9 +196,7 @@ export function initializeGenrePills() {
   });
 }
 
-// ======================
 // Range Sliders Functionality
-// ======================
 
 export function initializeRangeSliders() {
   function updateUserScore() {
@@ -263,9 +251,7 @@ export function initializeRangeSliders() {
   updateRuntime();
 }
 
-// ======================
 // Keywords Functionality
-// ======================
 
 export const selectedKeywords = new Set();
 const availableKeywords = Object.keys(KEYWORDS);
@@ -362,9 +348,7 @@ export function initializeKeywords() {
   });
 }
 
-// ======================
 // Search Button Observer
-// ======================
 
 export function initializeSearchButtonObserver() {
   const observer = new IntersectionObserver(

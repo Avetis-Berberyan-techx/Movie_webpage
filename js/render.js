@@ -1,13 +1,9 @@
-// ======================
 // Rendering Functions
-// ======================
 
 import { getColorFromPercent, formatDate } from "./utils.js";
 import { moviesContainer } from "./dom.js";
 
-/**
- * Render movies to the DOM
- */
+//Render movies to the DOM
 export function renderMovies(data, reset = true) {
   if (reset) moviesContainer.innerHTML = "";
 

@@ -1,13 +1,9 @@
-// ======================
 // API Functions
-// ======================
 
 import { API_KEY } from "./constants.js";
 import { getFilterURL } from "./utils.js";
 
-/**
- * Fetch movies from TMDB API with given filter parameters
- */
+//Fetch movies from TMDB API with given filter parameters
 export async function discoverMovies(params = {}) {
   const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&`;
   const filtersURL = getFilterURL(params);

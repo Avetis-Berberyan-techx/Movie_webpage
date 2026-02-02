@@ -96,6 +96,9 @@ body {
   min-width: 280px;
 }
 
+.main {
+}
+
 /* ======================
    Hamburger Block
    ====================== */
@@ -126,7 +129,7 @@ body {
    ====================== */
 .nav__list {
   display: flex;
-  gap: 25px;
+  gap: 22px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -145,7 +148,14 @@ body {
   display: flex;
   align-items: center;
 }
-
+.nav__item--profile {
+  display: none;
+}
+.nav__icon--profile {
+  width: 25px;
+  height: 25px;
+  filter: invert(1);
+}
 .nav__link {
   color: var(--color-text-light);
   text-decoration: none;
@@ -180,6 +190,10 @@ body {
 
 .nav__icon {
   display: block;
+}
+
+.nav__search {
+  color: #01b4e4;
 }
 
 /* ======================
@@ -953,7 +967,6 @@ body {
 }
 
 .button:active {
-  background-color: var(--color-primary-active);
   transform: translateY(2px);
   box-shadow:
     0 5px 10px 0 rgba(0, 0, 0, 0.2),
@@ -1287,8 +1300,17 @@ body {
     width: 98%;
   }
 
-  .nav__item:not(.nav__item--logo) {
+  .nav__item:not(.nav__item--logo, .nav__item--search, .nav__item--profile) {
     display: none;
+  }
+  .nav__item--profile {
+    display: block;
+  }
+  .nav__item--logo {
+    min-width: 138px;
+  }
+  .nav__list {
+    gap: 10px;
   }
 
   .hamburger {
@@ -1356,9 +1378,6 @@ body {
 
   .date-range__label {
     min-width: 35px;
-  }
-  .footer {
-    /* padding: var(--spacing-xl) 0; */
   }
 
   .footer__container {
