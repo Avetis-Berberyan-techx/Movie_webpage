@@ -1,6 +1,5 @@
-/* ======================
-   Variables
-   ====================== */
+/*    Variables
+ */
 :root {
   --color-primary: #01b4e4;
   --color-primary-hover: #008cba;
@@ -61,9 +60,8 @@
   --border-radius-md: 8px;
 }
 
-/* ======================
-   Base Styles
-   ====================== */
+/*    Base Styles
+ */
 * {
   box-sizing: border-box;
 }
@@ -75,16 +73,14 @@ body {
   color: var(--color-text-dark);
 }
 
-/* ======================
-   Page Block
-   ====================== */
+/*    Page Block
+ */
 .page {
   min-height: 100vh;
 }
 
-/* ======================
-   Header Block
-   ====================== */
+/*    Header Block
+ */
 .header {
   display: flex;
   justify-content: space-around;
@@ -96,12 +92,8 @@ body {
   min-width: 280px;
 }
 
-.main {
-}
-
-/* ======================
-   Hamburger Block
-   ====================== */
+/*    Hamburger Block
+ */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -124,9 +116,8 @@ body {
   border-radius: 2px;
 }
 
-/* ======================
-   Nav Block
-   ====================== */
+/*    Nav Block
+ */
 .nav__list {
   display: flex;
   gap: 22px;
@@ -196,27 +187,23 @@ body {
   color: #01b4e4;
 }
 
-/* ======================
-   Main Block
-   ====================== */
-
+/*    Main Block
+ */
 .main__title {
   margin-left: 10%;
   color: var(--color-text-dark);
 }
 
-/* ======================
-   Content Block
-   ====================== */
+/*    Content Block
+ */
 .content {
   display: flex;
   margin: 0 10%;
   gap: var(--spacing-xl);
 }
 
-/* ======================
-   Sidebar Block
-   ====================== */
+/*    Sidebar Block
+ */
 .sidebar {
   width: 25%;
   min-width: 280px;
@@ -225,9 +212,8 @@ body {
   gap: var(--spacing-md);
 }
 
-/* ======================
-   Sort Block
-   ====================== */
+/*    Sort Block
+ */
 .sort {
   background: var(--color-bg-card);
   box-shadow: var(--shadow-md);
@@ -285,9 +271,8 @@ body {
   color: var(--color-text-muted);
 }
 
-/* ======================
-   Select Block
-   ====================== */
+/*    Select Block
+ */
 .select {
   position: relative;
   width: 100%;
@@ -352,9 +337,8 @@ body {
   background-color: #f0f0f0;
 }
 
-/* ======================
-   Filters Block
-   ====================== */
+/*    Filters Block
+ */
 .filters {
   background: var(--color-bg-card);
   box-shadow: var(--shadow-md);
@@ -405,13 +389,10 @@ body {
   display: block;
 }
 
-/* ======================
-   Filter Group Block
-   ====================== */
+/*    Filter Group Block
+ */
 .filter-group {
   border: none;
-  /* padding: 0; */
-  /* margin: var(--spacing-lg) 0; */
 }
 
 .filter-group__title {
@@ -432,9 +413,8 @@ body {
   gap: var(--spacing-sm);
 }
 
-/* ======================
-   Checkbox Block
-   ====================== */
+/*    Checkbox Block
+ */
 .checkbox {
   display: flex;
   align-items: center;
@@ -508,9 +488,8 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* ======================
-   Picker Block
-   ====================== */
+/*    Picker Block
+ */
 .picker {
   position: relative;
   width: 100%;
@@ -633,9 +612,8 @@ body {
   display: none !important;
 }
 
-/* ======================
-   Date Range Block
-   ====================== */
+/*    Date Range Block
+ */
 .date-range {
   gap: var(--spacing-md);
   margin-top: var(--spacing-md);
@@ -689,9 +667,8 @@ body {
   display: block;
 }
 
-/* ======================
-   Genre Pills Block
-   ====================== */
+/*    Genre Pills Block
+ */
 .genre-pills {
   display: flex;
   flex-wrap: wrap;
@@ -720,9 +697,8 @@ body {
   border-color: var(--color-text-dark);
 }
 
-/* ======================
-   Sliders Block
-   ====================== */
+/*    Sliders Block
+ */
 .sliders {
   margin: 0 auto;
 }
@@ -839,9 +815,8 @@ body {
   display: inline-block;
 }
 
-/* ======================
-   Keywords Block
-   ====================== */
+/*    Keywords Block
+ */
 .keywords {
   width: 100%;
   margin: 1rem auto 1rem 0;
@@ -943,10 +918,7 @@ body {
 .keywords__dropdown-item:hover {
   background: #eff6ff;
 }
-
-/* ======================
-   Button Block
-   ====================== */
+/* Button Block */
 .button {
   padding: 12px;
   border: none;
@@ -984,9 +956,6 @@ body {
   border-radius: 22px;
 }
 
-.button--loadmore {
-}
-
 .main__button {
   padding: 12px;
   border: none;
@@ -1011,11 +980,9 @@ body {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
-/* .button--moved {
-} */
-/* ======================
-   Movies Section Block
-   ====================== */
+
+/*    Movies Section Block
+ */
 .movies-section {
   width: 75%;
   display: flex;
@@ -1032,9 +999,8 @@ body {
   justify-content: center;
 }
 
-/* ======================
-   Movie Card Block
-   ====================== */
+/*    Movie Card Block
+ */
 .movie-card {
   width: 200px;
   background-color: var(--color-bg-card);
@@ -1128,16 +1094,14 @@ body {
   margin: 0;
 }
 
-/* ======================
-   Load More Block
-   ====================== */
+/*    Load More Block
+ */
 .load-more {
   margin-top: var(--spacing-xl);
 }
 
-/* ======================
-   Footer Block
-   ====================== */
+/*    Footer Block
+ */
 .footer {
   width: 100%;
   background-color: var(--footer-bg);
@@ -1156,18 +1120,16 @@ body {
   gap: var(--spacing-2xl);
 }
 
-/* ======================
-   Footer Branding
-   ====================== */
+/*    Footer Branding
+ */
 .footer__branding {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
 }
 
-/* ======================
-   Footer Logo
-   ====================== */
+/* Footer Logo */
+
 .footer__logo {
   display: block;
 }
@@ -1196,9 +1158,8 @@ body {
   fill: var(--logo-color-bright);
 }
 
-/* ======================
-   Footer User Button
-   ====================== */
+/*    Footer User Button
+ */
 .footer__user-button {
   background-color: var(--button-bg);
   color: var(--button-text);
@@ -1223,18 +1184,15 @@ body {
   transform: translateY(1px);
 }
 
-/* ======================
-   Footer Navigation
-   ====================== */
+/*    Footer Navigation
+ */
 .footer__nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-xl);
 }
-
-/* ======================
-   Footer Column
-   ====================== */
+/*    Footer Column
+ */
 .footer__column {
   display: flex;
   flex-direction: column;
@@ -1249,9 +1207,8 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* ======================
-   Footer List
-   ====================== */
+/*    Footer List
+ */
 .footer__list {
   list-style: none;
   padding: 0;
@@ -1287,9 +1244,8 @@ body {
   height: auto;
 }
 
-/* ======================
-   Responsive Design
-   ====================== */
+/*    Responsive Design
+ */
 @media (max-width: 768px) {
   .content {
     display: block;
