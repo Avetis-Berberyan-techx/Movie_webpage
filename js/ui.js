@@ -1,7 +1,3 @@
-// ======================
-// UI Components
-// ======================
-
 import {
   sortToggle,
   sortBody,
@@ -168,6 +164,7 @@ export function setupPickerCloseBehavior() {
 
 export function initializeDatePickers() {
   const toPicker = new AirDatepicker(dateToInput, {
+    language: "en",
     dateFormat: "yyyy-MM-dd",
     onSelect: () => {
       toPicker.hide();
@@ -175,6 +172,7 @@ export function initializeDatePickers() {
   });
 
   const fromPicker = new AirDatepicker(dateFromInput, {
+    language: "en",
     dateFormat: "yyyy-MM-dd",
     onSelect: ({ date }) => {
       toPicker.update({ minDate: date });

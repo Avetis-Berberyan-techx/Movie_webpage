@@ -1,5 +1,3 @@
-// Rendering Functions
-
 import { getColorFromPercent, formatDate } from "./utils.js";
 import { moviesContainer } from "./dom.js";
 

@@ -988,7 +988,6 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 280px;
-  justify-content: center;
 }
 
 .movies {

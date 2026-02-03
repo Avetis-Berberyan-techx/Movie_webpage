@@ -1,5 +1,3 @@
-// Constants
-
 export const LANGUAGES = {
   English: "en",
   Spanish: "es",

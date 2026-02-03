@@ -1,5 +1,3 @@
-// API Functions
-
 import { API_KEY } from "./constants.js";
 import { getFilterURL } from "./utils.js";
 

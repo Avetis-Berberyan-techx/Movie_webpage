@@ -22,21 +22,13 @@ function initializeApp() {
   initializeSortUI();
   initializeFiltersToggle();
   initializeSearchButtonObserver();
-
-  // Initialize pickers
   initializePicker(countryPicker, COUNTRIES);
   initializePicker(languagePicker, LANGUAGES);
   setupPickerCloseBehavior();
-
-  // Initialize date pickers
   initializeDatePickers();
-
-  // Initialize other UI components
   initializeGenrePills();
   initializeRangeSliders();
   initializeKeywords();
-
-  // Initialize search functionality
   initializeSearchHandlers();
 
   // Initial load
