@@ -556,7 +556,7 @@ body {
   padding: 10px;
   display: none;
   animation: pickerPop 0.2s ease;
-  z-index: 10;
+  z-index: 3;
 }
 
 .picker--open .picker__panel {

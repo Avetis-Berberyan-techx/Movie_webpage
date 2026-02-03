@@ -161,10 +161,51 @@ export function setupPickerCloseBehavior() {
 }
 
 // Date Picker Functionality
-
 export function initializeDatePickers() {
+  const englishMonthsAndDays = {
+    days: [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    months: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    monthsShort: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+  };
+
   const toPicker = new AirDatepicker(dateToInput, {
-    language: "en",
+    locale: englishMonthsAndDays,
     dateFormat: "yyyy-MM-dd",
     onSelect: () => {
       toPicker.hide();
@@ -172,8 +213,8 @@ export function initializeDatePickers() {
   });
 
   const fromPicker = new AirDatepicker(dateFromInput, {
-    language: "en",
     dateFormat: "yyyy-MM-dd",
+    locale: englishMonthsAndDays,
     onSelect: ({ date }) => {
       toPicker.update({ minDate: date });
       fromPicker.hide();
